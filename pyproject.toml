@@ -1,0 +1,60 @@
+[project]
+name = "slog"
+version = "0.9.0"
+description = "Extends the built-in Python logging module with some convenient functions and custom log levels."
+authors = [
+    "David C. Stauffer <dstauffman@yahoo.com>"
+]
+license = "LGPL 3.0"
+readme = "README.rst"
+python = "^3.6"
+homepage = "https://github.com/dstauffman/slog"
+repository = "https://github.com/dstauffman/slog"
+documentation = "https://github.com/dstauffman/slog"
+
+keywords = ["packaging", "dependency", "infer", "pyproject.toml"]
+
+classifiers = [
+    "Topic :: Software Development"
+]
+
+# Requirements
+[dependencies]
+Click = "^7.0"
+
+[dev-dependencies]
+black = { version = "^18.3-alpha.0", python = "^3.6" }
+
+[scripts]
+poetry = "slog.cli:main"
+
+[build-system]
+requires = [
+    "setuptools >= 35.0.2",
+    "setuptools_scm >= 2.0.0, <3"
+]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 100
+target_version = ['py39']
+include = '\.pyi?$'
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+  | foo.py           # also separately exclude a file named foo.py in
+                     # the root of the project
+)
+'''
