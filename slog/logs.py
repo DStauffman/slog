@@ -80,7 +80,7 @@ def activate_logging(
             filename = Path(filename)
 
         # create the log file handler
-        fh = logging.FileHandler(filename)
+        fh = logging.FileHandler(filename)  # type: ignore[arg-type]
         fh.setLevel(file_level)
         fh.setFormatter(logging.Formatter(file_format))
         root_logger.addHandler(fh)
