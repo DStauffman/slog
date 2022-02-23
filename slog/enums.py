@@ -83,7 +83,6 @@ class IntEnumPlus(int, Enum, metaclass=_EnumMetaPlus):
         return "{}.{}: {}".format(self.__class__.__name__, self.name, self.value)
 
 
-
 #%% Enums - ReturnCodes
 @consecutive
 class ReturnCodes(IntEnumPlus):
@@ -152,20 +151,20 @@ class LogLevel(IntEnumPlus):
 
 
 #%% Register custom logging levels
-logging.addLevelName(LogLevel.L0, 'L0')
-logging.addLevelName(LogLevel.L1, 'L1')
-logging.addLevelName(LogLevel.L2, 'L2')
-logging.addLevelName(LogLevel.L3, 'L3')
-logging.addLevelName(LogLevel.L4, 'L4')
-logging.addLevelName(LogLevel.L5, 'L5')
-logging.addLevelName(LogLevel.L6, 'L6')
-logging.addLevelName(LogLevel.L7, 'L7')
-logging.addLevelName(LogLevel.L8, 'L8')
-logging.addLevelName(LogLevel.L9, 'L9')
-logging.addLevelName(LogLevel.L10, 'L10')
-logging.addLevelName(LogLevel.L11, 'L11')
-logging.addLevelName(LogLevel.L12, 'L12')
-logging.addLevelName(LogLevel.L20, 'L20')
+logging.addLevelName(LogLevel.L0, "L0")
+logging.addLevelName(LogLevel.L1, "L1")
+logging.addLevelName(LogLevel.L2, "L2")
+logging.addLevelName(LogLevel.L3, "L3")
+logging.addLevelName(LogLevel.L4, "L4")
+logging.addLevelName(LogLevel.L5, "L5")
+logging.addLevelName(LogLevel.L6, "L6")
+logging.addLevelName(LogLevel.L7, "L7")
+logging.addLevelName(LogLevel.L8, "L8")
+logging.addLevelName(LogLevel.L9, "L9")
+logging.addLevelName(LogLevel.L10, "L10")
+logging.addLevelName(LogLevel.L11, "L11")
+logging.addLevelName(LogLevel.L12, "L12")
+logging.addLevelName(LogLevel.L20, "L20")
 
 #%% Configure default logging if not already set
 logging.basicConfig(level=logging.WARNING)

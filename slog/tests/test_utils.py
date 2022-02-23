@@ -17,6 +17,7 @@ import unittest
 
 import slog as lg
 
+
 class _Example_Consecutive(lg.IntEnumPlus):
     zero: ClassVar[int] = 0
     one: ClassVar[int] = 1
@@ -34,6 +35,7 @@ class _Example_Consecutive3(lg.IntEnumPlus):
     one: ClassVar[int] = 1
     dup: ClassVar[int] = 0
 
+
 #%% consecutive
 class Test_consecutive(unittest.TestCase):
     r"""
@@ -44,7 +46,7 @@ class Test_consecutive(unittest.TestCase):
     """
 
     def setUp(self) -> None:
-        self.enum = lg.IntEnumPlus('Enum1', 'one two three')  # type: ignore[call-overload]
+        self.enum = lg.IntEnumPlus("Enum1", "one two three")  # type: ignore[call-overload]
 
     def test_consecutive(self) -> None:
         enum = lg.consecutive(_Example_Consecutive)
@@ -53,17 +55,17 @@ class Test_consecutive(unittest.TestCase):
     def test_consecutive_but_not_zero(self) -> None:
         with self.assertRaises(ValueError) as context:
             lg.consecutive(self.enum)
-        self.assertEqual(str(context.exception), 'Bad starting value (should be zero): 1')
+        self.assertEqual(str(context.exception), "Bad starting value (should be zero): 1")
 
     def test_unique_but_non_consecutive(self) -> None:
         with self.assertRaises(ValueError) as context:
             lg.consecutive(_Example_Consecutive2)
-        self.assertEqual(str(context.exception), 'Non-consecutive values found in _Example_Consecutive2: skip: 9')
+        self.assertEqual(str(context.exception), "Non-consecutive values found in _Example_Consecutive2: skip: 9")
 
     def test_not_unique(self) -> None:
         with self.assertRaises(ValueError) as context:
             lg.consecutive(_Example_Consecutive3)
-        self.assertEqual(str(context.exception), 'Duplicate values found in _Example_Consecutive3: dup -> zero')
+        self.assertEqual(str(context.exception), "Duplicate values found in _Example_Consecutive3: dup -> zero")
 
 
 #%% is_dunder
@@ -75,16 +77,16 @@ class Test_is_dunder(unittest.TestCase):
     """
 
     def setUp(self) -> None:
-        self.true = ['__dunder__', '__init__', '__a__']
-        self.false = ['init', '__init__.py', '_private', '__private', 'private__', '____']
+        self.true = ["__dunder__", "__init__", "__a__"]
+        self.false = ["init", "__init__.py", "_private", "__private", "private__", "____"]
 
     def test_trues(self) -> None:
         for key in self.true:
-            self.assertTrue(lg.is_dunder(key), key + ' Should be a __dunder__ method')
+            self.assertTrue(lg.is_dunder(key), key + " Should be a __dunder__ method")
 
     def test_falses(self) -> None:
         for key in self.false:
-            self.assertFalse(lg.is_dunder(key), key + ' Should not be considered dunder.')
+            self.assertFalse(lg.is_dunder(key), key + " Should not be considered dunder.")
 
 
 #%% get_root_dir
@@ -112,34 +114,35 @@ class Test_capture_output(unittest.TestCase):
 
     def test_std_out(self) -> None:
         with lg.capture_output() as out:
-            print('Hello, World!')
+            print("Hello, World!")
         output = out.getvalue().strip()
         out.close()
-        self.assertEqual(output, 'Hello, World!')
+        self.assertEqual(output, "Hello, World!")
 
     def test_std_err(self) -> None:
-        with lg.capture_output('err') as err:
-            print('Error Raised.', file=sys.stderr)
+        with lg.capture_output("err") as err:
+            print("Error Raised.", file=sys.stderr)
         error = err.getvalue().strip()
         err.close()
-        self.assertEqual(error, 'Error Raised.')
+        self.assertEqual(error, "Error Raised.")
 
     def test_all(self) -> None:
-        with lg.capture_output('all') as (out, err):
-            print('Hello, World!')
-            print('Error Raised.', file=sys.stderr)
+        with lg.capture_output("all") as (out, err):
+            print("Hello, World!")
+            print("Error Raised.", file=sys.stderr)
         output = out.getvalue().strip()
         error = err.getvalue().strip()
         out.close()
         err.close()
-        self.assertEqual(output, 'Hello, World!')
-        self.assertEqual(error, 'Error Raised.')
+        self.assertEqual(output, "Hello, World!")
+        self.assertEqual(error, "Error Raised.")
 
     def test_bad_value(self) -> None:
         with self.assertRaises(RuntimeError):
-            with lg.capture_output('bad') as (out, err):
-                print('Lost values')
+            with lg.capture_output("bad") as (out, err):
+                print("Lost values")
+
 
 #%% Unit test execution
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main(exit=False)

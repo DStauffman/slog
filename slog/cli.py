@@ -40,6 +40,7 @@ def main() -> int:
     elif command == "tests":
         # run tests using pytest
         import pytest
+
         exit_code = pytest.main([str(get_root_dir() / "tests"), "-rfEsP"] + sys.argv[2:])
         return_code = ReturnCodes.clean if exit_code == 0 else ReturnCodes.test_failures
     else:

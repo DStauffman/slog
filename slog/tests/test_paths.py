@@ -40,9 +40,9 @@ class Test_get_tests_dir(unittest.TestCase):
 
     def test_function(self) -> None:
         folder = lg.get_tests_dir()
-        self.assertEqual(str(folder), os.path.join(str(lg.get_root_dir()), 'tests'))
+        self.assertEqual(str(folder), os.path.join(str(lg.get_root_dir()), "tests"))
 
 
 #%% Unit test execution
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main(exit=False)

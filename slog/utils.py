@@ -15,7 +15,7 @@ from typing import Any, Callable, TypeVar
 import unittest
 
 #%% Constants
-_F = TypeVar('_F', bound=Callable[..., Any])
+_F = TypeVar("_F", bound=Callable[..., Any])
 
 
 #%% Decorators - consecutive
@@ -25,7 +25,7 @@ def consecutive(enumeration: _F) -> _F:
     non_consecutive = []
     last_value = min(enumeration.__members__.values()) - 1  # type: ignore[attr-defined]
     if last_value != -1:
-        raise ValueError('Bad starting value (should be zero): {}'.format(last_value + 1))
+        raise ValueError("Bad starting value (should be zero): {}".format(last_value + 1))
     for name, member in enumeration.__members__.items():  # type: ignore[attr-defined]
         if name != member.name:
             duplicates.append((name, member.name))
@@ -33,11 +33,11 @@ def consecutive(enumeration: _F) -> _F:
             non_consecutive.append((name, member))
         last_value = member
     if duplicates:
-        alias_details = ', '.join(['{} -> {}'.format(alias, name) for (alias, name) in duplicates])
-        raise ValueError('Duplicate values found in {}: {}'.format(enumeration.__name__, alias_details))
+        alias_details = ", ".join(["{} -> {}".format(alias, name) for (alias, name) in duplicates])
+        raise ValueError("Duplicate values found in {}: {}".format(enumeration.__name__, alias_details))
     if non_consecutive:
-        alias_details = ', '.join('{}: {}'.format(name, int(member)) for (name, member) in non_consecutive)
-        raise ValueError('Non-consecutive values found in {}: {}'.format(enumeration.__name__, alias_details))
+        alias_details = ", ".join("{}: {}".format(name, int(member)) for (name, member) in non_consecutive)
+        raise ValueError("Non-consecutive values found in {}: {}".format(enumeration.__name__, alias_details))
     return enumeration
 
 
@@ -72,12 +72,12 @@ def is_dunder(name: str) -> bool:
 
     """
     # Note that this is copied from the enum library, as it is not part of their public API.
-    return len(name) > 4 and name[:2] == name[-2:] == '__' and name[2] != '_' and name[-3] != '_'
+    return len(name) > 4 and name[:2] == name[-2:] == "__" and name[2] != "_" and name[-3] != "_"
 
 
 #%% Functions - capture_output
 @contextmanager
-def capture_output(mode: str = 'out'):
+def capture_output(mode: str = "out"):
     r"""
     Capture the stdout and stderr streams instead of displaying to the screen.
 
@@ -112,8 +112,8 @@ def capture_output(mode: str = 'out'):
 
     """
     # alias modes
-    capture_out = True if mode == 'out' or mode == 'all' else False
-    capture_err = True if mode == 'err' or mode == 'all' else False
+    capture_out = True if mode == "out" or mode == "all" else False
+    capture_err = True if mode == "err" or mode == "all" else False
     # create new string buffers
     new_out, new_err = StringIO(), StringIO()
     # alias the old string buffers for restoration afterwards
@@ -125,11 +125,11 @@ def capture_output(mode: str = 'out'):
         if capture_err:
             sys.stderr = new_err
         # yield results as desired
-        if mode == 'out':
+        if mode == "out":
             yield sys.stdout
-        elif mode == 'err':
+        elif mode == "err":
             yield sys.stderr
-        elif mode == 'all':
+        elif mode == "all":
             yield sys.stdout, sys.stderr
     finally:
         # restore the original buffers once all results are read
@@ -137,6 +137,6 @@ def capture_output(mode: str = 'out'):
 
 
 #%% Unit test
-if __name__ == '__main__':
-    unittest.main(module='slog.tests.test_utils', exit=False)
+if __name__ == "__main__":
+    unittest.main(module="slog.tests.test_utils", exit=False)
     doctest.testmod(verbose=False)

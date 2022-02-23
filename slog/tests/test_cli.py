@@ -36,10 +36,10 @@ class Test_print_help(unittest.TestCase):
             lg.print_help()
         output = out.getvalue().strip()
         out.close()
-        self.assertTrue(output.startswith('####\nslog\n####\n'))
+        self.assertTrue(output.startswith("####\nslog\n####\n"))
 
     def test_specify_file(self) -> None:
-        help_file = lg.get_tests_dir() / 'test_cli.py'
+        help_file = lg.get_tests_dir() / "test_cli.py"
         with lg.capture_output() as out:
             lg.print_help(help_file)
         output = out.getvalue().strip()
@@ -59,9 +59,9 @@ class Test_print_version(unittest.TestCase):
             lg.print_version()
         output = out.getvalue().strip()
         out.close()
-        self.assertIn('.', output)
+        self.assertIn(".", output)
 
 
 #%% Unit test execution
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main(exit=False)
