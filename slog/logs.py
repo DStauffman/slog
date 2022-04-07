@@ -19,6 +19,7 @@ import unittest
 root_logger = logging.getLogger("")
 logger = logging.getLogger(__name__)
 
+
 #%% Functions - activate_logging
 def activate_logging(
     log_level: int = logging.INFO,
