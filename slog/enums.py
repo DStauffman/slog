@@ -97,6 +97,7 @@ class ReturnCodes(IntEnumPlus):
     ReturnCodes.clean: 0
 
     """
+    # fmt: off
     clean: ClassVar[int]            = 0  # Clean exit
     bad_command: ClassVar[int]      = 1  # Unexpected command
     bad_folder: ClassVar[int]       = 2  # Folder to execute a command in doesn't exist
@@ -104,6 +105,7 @@ class ReturnCodes(IntEnumPlus):
     bad_version: ClassVar[int]      = 4  # version information cannot be determined
     test_failures: ClassVar[int]    = 5  # A test ran to completion, but failed its criteria
     no_coverage_tool: ClassVar[int] = 6  # Coverage tool is not installed
+    # fmt: on
 
 
 #%% Enums - LogLevel
