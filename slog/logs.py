@@ -14,10 +14,9 @@ from pathlib import Path
 from typing import Any, List, Union
 import unittest
 
-
 #%% Globals
 root_logger = logging.getLogger("")
-logger = logging.getLogger(__name__)
+this_logger = logging.getLogger(__name__)
 
 
 #%% Functions - activate_logging
@@ -97,7 +96,7 @@ def activate_logging(
         text = f"Logging configured to level {log_level} at {datetime.datetime.now()}"
         if isinstance(log_start, str):
             text += " in " + log_start
-        logger.log(logging.WARNING, text)
+        this_logger.log(logging.WARNING, text)
 
 
 #%% Functions - deactivate_logging
@@ -155,7 +154,9 @@ def flush_logging() -> None:
 
 
 #%% Functions - log_multiline
-def log_multiline(logger: logging.Logger, log_level: int, message: Any, *args: Any) -> None:
+def log_multiline(
+    logger: logging.Logger, log_level: int, message: Any, *args: Any
+) -> None:
     r"""
     Passes messages through to the logger with options for multiline messages.
 

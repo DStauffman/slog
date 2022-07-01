@@ -55,20 +55,24 @@ class Test_consecutive(unittest.TestCase):
     def test_consecutive_but_not_zero(self) -> None:
         with self.assertRaises(ValueError) as context:
             lg.consecutive(self.enum)
-        self.assertEqual(str(context.exception), "Bad starting value (should be zero): 1")
+        self.assertEqual(
+            str(context.exception), "Bad starting value (should be zero): 1"
+        )
 
     def test_unique_but_non_consecutive(self) -> None:
         with self.assertRaises(ValueError) as context:
             lg.consecutive(_Example_Consecutive2)
         self.assertEqual(
-            str(context.exception), "Non-consecutive values found in _Example_Consecutive2: skip: 9"
+            str(context.exception),
+            "Non-consecutive values found in _Example_Consecutive2: skip: 9",
         )
 
     def test_not_unique(self) -> None:
         with self.assertRaises(ValueError) as context:
             lg.consecutive(_Example_Consecutive3)
         self.assertEqual(
-            str(context.exception), "Duplicate values found in _Example_Consecutive3: dup -> zero"
+            str(context.exception),
+            "Duplicate values found in _Example_Consecutive3: dup -> zero",
         )
 
 
@@ -82,7 +86,14 @@ class Test_is_dunder(unittest.TestCase):
 
     def setUp(self) -> None:
         self.true = ["__dunder__", "__init__", "__a__"]
-        self.false = ["init", "__init__.py", "_private", "__private", "private__", "____"]
+        self.false = [
+            "init",
+            "__init__.py",
+            "_private",
+            "__private",
+            "private__",
+            "____",
+        ]
 
     def test_trues(self) -> None:
         for key in self.true:
@@ -90,7 +101,9 @@ class Test_is_dunder(unittest.TestCase):
 
     def test_falses(self) -> None:
         for key in self.false:
-            self.assertFalse(lg.is_dunder(key), key + " Should not be considered dunder.")
+            self.assertFalse(
+                lg.is_dunder(key), key + " Should not be considered dunder."
+            )
 
 
 #%% get_root_dir
@@ -144,7 +157,7 @@ class Test_capture_output(unittest.TestCase):
     def test_bad_value(self) -> None:
         with self.assertRaises(RuntimeError):
             with lg.capture_output("bad") as (out, err):
-                print("Lost values")
+                print("Lost values")  # pragma: no cover
 
 
 #%% Unit test execution

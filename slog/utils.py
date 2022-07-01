@@ -25,7 +25,7 @@ def consecutive(enumeration: _F) -> _F:
     non_consecutive = []
     last_value = min(enumeration.__members__.values()) - 1  # type: ignore[attr-defined]
     if last_value != -1:
-        raise ValueError("Bad starting value (should be zero): {}".format(last_value + 1))
+        raise ValueError(f"Bad starting value (should be zero): {last_value + 1}")
     for name, member in enumeration.__members__.items():  # type: ignore[attr-defined]
         if name != member.name:
             duplicates.append((name, member.name))
@@ -33,16 +33,18 @@ def consecutive(enumeration: _F) -> _F:
             non_consecutive.append((name, member))
         last_value = member
     if duplicates:
-        alias_details = ", ".join(["{} -> {}".format(alias, name) for (alias, name) in duplicates])
+        alias_details = ", ".join(
+            [f"{alias} -> {name}" for (alias, name) in duplicates]
+        )
         raise ValueError(
-            "Duplicate values found in {}: {}".format(enumeration.__name__, alias_details)
+            f"Duplicate values found in {enumeration.__name__}: {alias_details}"
         )
     if non_consecutive:
         alias_details = ", ".join(
-            "{}: {}".format(name, int(member)) for (name, member) in non_consecutive
+            f"{name}: {int(member)}" for (name, member) in non_consecutive
         )
         raise ValueError(
-            "Non-consecutive values found in {}: {}".format(enumeration.__name__, alias_details)
+            f"Non-consecutive values found in {enumeration.__name__}: {alias_details}"
         )
     return enumeration
 
@@ -78,7 +80,12 @@ def is_dunder(name: str) -> bool:
 
     """
     # Note that this is copied from the enum library, as it is not part of their public API.
-    return len(name) > 4 and name[:2] == name[-2:] == "__" and name[2] != "_" and name[-3] != "_"
+    return (
+        len(name) > 4
+        and name[:2] == name[-2:] == "__"
+        and name[2] != "_"
+        and name[-3] != "_"
+    )
 
 
 #%% Functions - capture_output
@@ -118,8 +125,8 @@ def capture_output(mode: str = "out"):
 
     """
     # alias modes
-    capture_out = True if mode == "out" or mode == "all" else False
-    capture_err = True if mode == "err" or mode == "all" else False
+    capture_out = mode in {"out", "all"}
+    capture_err = mode in {"err", "all"}
     # create new string buffers
     new_out, new_err = StringIO(), StringIO()
     # alias the old string buffers for restoration afterwards

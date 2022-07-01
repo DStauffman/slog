@@ -39,9 +39,11 @@ def main() -> int:
             return_code = ReturnCodes.clean
     elif command == "tests":
         # run tests using pytest
-        import pytest
+        import pytest  # pylint: disable=import-outside-toplevel
 
-        exit_code = pytest.main([str(get_root_dir() / "tests"), "-rfEsP"] + sys.argv[2:])
+        exit_code = pytest.main(
+            [str(get_root_dir() / "tests"), "-rfEsP"] + sys.argv[2:]
+        )
         return_code = ReturnCodes.clean if exit_code == 0 else ReturnCodes.test_failures
     else:
         print(f'Unknown command: "{command}"')
@@ -70,7 +72,7 @@ def print_help(help_file: Path = None) -> int:
     if not help_file.is_file():
         print(f'Warning: help file at "{help_file}" was not found.')
         return ReturnCodes.bad_help_file
-    with open(help_file) as file:
+    with open(help_file, encoding="utf-8") as file:
         text = file.read()
     print(text)
     return ReturnCodes.clean

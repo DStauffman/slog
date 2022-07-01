@@ -28,10 +28,10 @@ class _EnumMetaPlus(EnumMeta):
     """
 
     def __repr__(cls) -> str:
-        return "\n".join((repr(field) for field in cls))  # type: ignore[var-annotated]
+        return "\n".join((repr(field) for field in cls))  # type: ignore[var-annotated]  # pylint: disable=not-an-iterable
 
     def __str__(cls) -> str:
-        return "\n".join((str(field) for field in cls))  # type: ignore[var-annotated]
+        return "\n".join((str(field) for field in cls))  # type: ignore[var-annotated]  # pylint: disable=not-an-iterable
 
     def __getattr__(cls, name: str) -> int:
         r"""Return the enum member matching `name`."""
@@ -40,7 +40,7 @@ class _EnumMetaPlus(EnumMeta):
         try:
             return cls._member_map_[name]  # type: ignore[return-value]
         except KeyError:
-            text = '"{}" does not have an attribute of "{}"'.format(cls.__name__, name)
+            text = f'"{cls.__name__}" does not have an attribute of "{name}"'
             raise AttributeError(text) from None
 
     def list_of_names(cls) -> List[str]:
@@ -80,7 +80,7 @@ class IntEnumPlus(int, Enum, metaclass=_EnumMetaPlus):
 
     def __str__(self) -> str:
         r"""Return string representation."""
-        return "{}.{}: {}".format(self.__class__.__name__, self.name, self.value)
+        return f"{self.__class__.__name__}.{self.name}: {self.value}"
 
 
 #%% Enums - ReturnCodes
