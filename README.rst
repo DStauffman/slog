@@ -29,7 +29,7 @@ Using the code
 TODO: add example use cases here.
 
 Extending the logging formatter
-***********************************
+*******************************
 
 TODO: add examples of how to further extend the custom logging wrappers.
 

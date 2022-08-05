@@ -32,18 +32,18 @@ class Test_print_help(unittest.TestCase):
     """
 
     def test_nominal(self) -> None:
-        with lg.capture_output() as out:
+        with lg.capture_output() as ctx:
             lg.print_help()
-        output = out.getvalue().strip()
-        out.close()
+        output = ctx.get_output()
+        ctx.close()
         self.assertTrue(output.startswith("####\nslog\n####\n"))
 
     def test_specify_file(self) -> None:
         help_file = lg.get_tests_dir() / "test_cli.py"
-        with lg.capture_output() as out:
+        with lg.capture_output() as ctx:
             lg.print_help(help_file)
-        output = out.getvalue().strip()
-        out.close()
+        output = ctx.get_output()
+        ctx.close()
         self.assertTrue(output.startswith('r"""\nTest file for the `cli` module'))
 
 
@@ -55,10 +55,10 @@ class Test_print_version(unittest.TestCase):
     """
 
     def test_nominal(self) -> None:
-        with lg.capture_output() as out:
+        with lg.capture_output() as ctx:
             lg.print_version()
-        output = out.getvalue().strip()
-        out.close()
+        output = ctx.get_output()
+        ctx.close()
         self.assertIn(".", output)
 
 

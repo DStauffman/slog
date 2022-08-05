@@ -9,10 +9,12 @@ Notes
 
 #%% Imports
 import inspect
+from io import StringIO
 import os
 import pathlib
 import sys
-from typing import ClassVar
+from types import TracebackType
+from typing import AnyStr, ClassVar, Iterable, Iterator, List, Optional, TextIO, Type
 import unittest
 
 import slog as lg
@@ -34,6 +36,125 @@ class _Example_Consecutive3(lg.IntEnumPlus):
     zero: ClassVar[int] = 0
     one: ClassVar[int] = 1
     dup: ClassVar[int] = 0
+
+
+class _ExampleTextIOClass(TextIO):
+    def __init__(self) -> None:
+        self._text: List[str] = []
+
+    def write(self, text: str) -> int:
+        self._text.append(text)
+        return 0
+
+    def close(self) -> None:
+        self._text = []
+
+    def readlines(self, hint: int = 0) -> List[str]:
+        return self._text[hint:]
+
+    def __enter__(self) -> TextIO:
+        pass
+
+    def fileno(self) -> int:
+        pass
+
+    def flush(self) -> None:
+        pass
+
+    def isatty(self) -> bool:
+        pass
+
+    def read(self, n: int = ...) -> AnyStr:
+        pass
+
+    def readable(self) -> bool:
+        pass
+
+    def readline(self, limit: int = ...) -> AnyStr:
+        pass
+
+    def seek(self, offset: int, whence: int = ...) -> int:
+        pass
+
+    def seekable(self) -> bool:
+        pass
+
+    def tell(self) -> int:
+        pass
+
+    def truncate(self, size: Optional[int] = ...) -> int:
+        pass
+
+    def writable(self) -> bool:
+        pass
+
+    def writelines(self, lines: Iterable[AnyStr]) -> None:
+        pass
+
+    def __next__(self) -> AnyStr:
+        pass
+
+    def __iter__(self) -> Iterator[AnyStr]:
+        pass
+
+    def __exit__(  # type: ignore[override]
+        self,
+        t: Optional[Type[BaseException]],
+        value: Optional[BaseException],
+        traceback: Optional[TracebackType],
+    ) -> Optional[bool]:
+        pass
+
+
+#%% CaptureOutputResult
+class Test_CaptureOutputResult(unittest.TestCase):
+    r"""
+    Tests the CaptureOutputResult class with the following cases:
+        TBD
+    """
+
+    def test_close(self) -> None:
+        out = StringIO()
+        err = StringIO()
+        ctx = lg.CaptureOutputResult(out, err)
+        out.write("Works")
+        err.write("Also works")
+        ctx.close()
+        try:
+            out.write("Fails")
+        except ValueError:
+            pass
+        try:
+            err.write("Also fails")
+        except ValueError:
+            pass
+
+    def test_get_output(self) -> None:
+        out = StringIO()
+        ctx = lg.CaptureOutputResult(out)
+        exp = "Hello, World!"
+        print(exp, file=out)
+        output = ctx.get_output()
+        error = ctx.get_error()
+        self.assertEqual(output, exp)
+        self.assertEqual(error, "")
+
+    def test_get_error(self) -> None:
+        err = StringIO()
+        ctx = lg.CaptureOutputResult(stderr=err)
+        exp = "Hello, World!"
+        print(exp, file=err)
+        output = ctx.get_output()
+        error = ctx.get_error()
+        self.assertEqual(output, "")
+        self.assertEqual(error, exp)
+
+    def test_get_stream(self) -> None:
+        stream = _ExampleTextIOClass()
+        stream.write("Testing")
+        stream.write("More testing.")
+        text = lg.CaptureOutputResult.get_stream(stream)
+        self.assertEqual(text, "Testing\nMore testing.")
 
 
 #%% consecutive
@@ -130,33 +251,32 @@ class Test_capture_output(unittest.TestCase):
     """
 
     def test_std_out(self) -> None:
-        with lg.capture_output() as out:
+        with lg.capture_output() as ctx:
             print("Hello, World!")
-        output = out.getvalue().strip()
-        out.close()
+        output = ctx.get_output()
+        ctx.close()
         self.assertEqual(output, "Hello, World!")
 
     def test_std_err(self) -> None:
-        with lg.capture_output("err") as err:
+        with lg.capture_output("err") as ctx:
             print("Error Raised.", file=sys.stderr)
-        error = err.getvalue().strip()
-        err.close()
+        error = ctx.get_error()
+        ctx.close()
         self.assertEqual(error, "Error Raised.")
 
     def test_all(self) -> None:
-        with lg.capture_output("all") as (out, err):
+        with lg.capture_output("all") as ctx:
             print("Hello, World!")
             print("Error Raised.", file=sys.stderr)
-        output = out.getvalue().strip()
-        error = err.getvalue().strip()
-        out.close()
-        err.close()
+        output = ctx.get_output()
+        error = ctx.get_error()
+        ctx.close()
         self.assertEqual(output, "Hello, World!")
         self.assertEqual(error, "Error Raised.")
 
     def test_bad_value(self) -> None:
         with self.assertRaises(RuntimeError):
-            with lg.capture_output("bad") as (out, err):
+            with lg.capture_output("bad"):
                 print("Lost values")  # pragma: no cover
 
 

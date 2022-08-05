@@ -28,40 +28,40 @@ class Test_IntEnumPlus(unittest.TestCase):
     """
 
     def test_printing_instance_str(self) -> None:
-        with lg.capture_output() as out:
+        with lg.capture_output() as ctx:
             print(_Example_Enum.field_one)
             print(_Example_Enum.field_two)
-        output = out.getvalue().strip()
-        out.close()
+        output = ctx.get_output()
+        ctx.close()
         self.assertEqual(
             output, "_Example_Enum.field_one: 1\n_Example_Enum.field_two: 2"
         )
 
     def test_printing_instance_repr(self) -> None:
-        with lg.capture_output() as out:
+        with lg.capture_output() as ctx:
             print(repr(_Example_Enum.field_one))
             print(repr(_Example_Enum.field_two))
-        output = out.getvalue().strip()
-        out.close()
+        output = ctx.get_output()
+        ctx.close()
         self.assertEqual(
             output, "<_Example_Enum.field_one: 1>\n<_Example_Enum.field_two: 2>"
         )
 
     def test_printing_class_str(self) -> None:
-        with lg.capture_output() as out:
+        with lg.capture_output() as ctx:
             print(_Example_Enum)
-        output = out.getvalue().strip()
-        out.close()
+        output = ctx.get_output()
+        ctx.close()
         self.assertEqual(
             output,
             "_Example_Enum.field_one: 1\n_Example_Enum.field_two: 2\n_Example_Enum.field_ten: 10",
         )
 
     def test_printing_class_repr(self) -> None:
-        with lg.capture_output() as out:
+        with lg.capture_output() as ctx:
             print(repr(_Example_Enum))
-        output = out.getvalue().strip()
-        out.close()
+        output = ctx.get_output()
+        ctx.close()
         self.assertEqual(
             output,
             "<_Example_Enum.field_one: 1>\n<_Example_Enum.field_two: 2>\n<_Example_Enum.field_ten: 10>",

@@ -104,7 +104,7 @@ warn_unused_configs    = true
 warn_unreachable       = true
 warn_unused_ignores    = true
 disallow_untyped_calls = true
-#disallow_untyped_defs  = true
+disallow_untyped_defs  = true
 files                  = ["$MYPY_CONFIG_FILE_DIR/slog/**/*.py"]
 
 [tool.pylint.messages_control]
