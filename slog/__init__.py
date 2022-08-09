@@ -5,11 +5,7 @@ The "slog" library extends the built-in Python logging module with some convenie
 
 #%% Imports
 from .cli import main as main, print_help as print_help, print_version as print_version
-from .enums import (
-    IntEnumPlus as IntEnumPlus,
-    ReturnCodes as ReturnCodes,
-    LogLevel as LogLevel,
-)
+from .enums import IntEnumPlus as IntEnumPlus, ReturnCodes as ReturnCodes, LogLevel as LogLevel
 from .logs import (
     activate_logging as activate_logging,
     deactivate_logging as deactivate_logging,

@@ -76,19 +76,11 @@ def consecutive(enumeration: _F) -> _F:
             non_consecutive.append((name, member))
         last_value = member
     if duplicates:
-        alias_details = ", ".join(
-            [f"{alias} -> {name}" for (alias, name) in duplicates]
-        )
-        raise ValueError(
-            f"Duplicate values found in {enumeration.__name__}: {alias_details}"
-        )
+        alias_details = ", ".join([f"{alias} -> {name}" for (alias, name) in duplicates])
+        raise ValueError(f"Duplicate values found in {enumeration.__name__}: {alias_details}")
     if non_consecutive:
-        alias_details = ", ".join(
-            f"{name}: {int(member)}" for (name, member) in non_consecutive
-        )
-        raise ValueError(
-            f"Non-consecutive values found in {enumeration.__name__}: {alias_details}"
-        )
+        alias_details = ", ".join(f"{name}: {int(member)}" for (name, member) in non_consecutive)
+        raise ValueError(f"Non-consecutive values found in {enumeration.__name__}: {alias_details}")
     return enumeration
 
 
@@ -123,12 +115,7 @@ def is_dunder(name: str) -> bool:
 
     """
     # Note that this is copied from the enum library, as it is not part of their public API.
-    return (
-        len(name) > 4
-        and name[:2] == name[-2:] == "__"
-        and name[2] != "_"
-        and name[-3] != "_"
-    )
+    return len(name) > 4 and name[:2] == name[-2:] == "__" and name[2] != "_" and name[-3] != "_"
 
 
 #%% Functions - capture_output

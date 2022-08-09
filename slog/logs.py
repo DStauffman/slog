@@ -128,9 +128,7 @@ def deactivate_logging() -> None:
         i += 1
     # check for bad situations
     if i == max_handlers or bool(root_logger.handlers):
-        raise ValueError(
-            "Something bad happended when trying to close the logger."
-        )  # pragma: no cover
+        raise ValueError("Something bad happended when trying to close the logger.")  # pragma: no cover
 
 
 #%% Functions - flush_logging
@@ -154,9 +152,7 @@ def flush_logging() -> None:
 
 
 #%% Functions - log_multiline
-def log_multiline(
-    logger: logging.Logger, log_level: int, message: Any, *args: Any
-) -> None:
+def log_multiline(logger: logging.Logger, log_level: int, message: Any, *args: Any) -> None:
     r"""
     Passes messages through to the logger with options for multiline messages.
 

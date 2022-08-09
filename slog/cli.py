@@ -42,9 +42,7 @@ def main() -> int:
         # run tests using pytest
         import pytest  # pylint: disable=import-outside-toplevel
 
-        exit_code = pytest.main(
-            [str(get_root_dir() / "tests"), "-rfEsP"] + sys.argv[2:]
-        )
+        exit_code = pytest.main([str(get_root_dir() / "tests"), "-rfEsP"] + sys.argv[2:])
         return_code = ReturnCodes.clean if exit_code == 0 else ReturnCodes.test_failures
     else:
         print(f'Unknown command: "{command}"')

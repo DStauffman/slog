@@ -114,9 +114,7 @@ class Test_log_multiline(unittest.TestCase):
     @unittest.skipIf(not HAVE_NUMPY, "Skipping due to missing numpy dependency.")
     def test_numpy1(self) -> None:
         with self.assertLogs(logger=self.logger, level=self.level) as logs:
-            lg.log_multiline(
-                self.logger, self.level, np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-            )
+            lg.log_multiline(self.logger, self.level, np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))
         lines = logs.output
         self.assertEqual(len(lines), 3)
         self.assertEqual(lines[0], "L5:Test:[[1 2 3]")

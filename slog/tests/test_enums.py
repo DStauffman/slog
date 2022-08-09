@@ -33,9 +33,7 @@ class Test_IntEnumPlus(unittest.TestCase):
             print(_Example_Enum.field_two)
         output = ctx.get_output()
         ctx.close()
-        self.assertEqual(
-            output, "_Example_Enum.field_one: 1\n_Example_Enum.field_two: 2"
-        )
+        self.assertEqual(output, "_Example_Enum.field_one: 1\n_Example_Enum.field_two: 2")
 
     def test_printing_instance_repr(self) -> None:
         with lg.capture_output() as ctx:
@@ -43,9 +41,7 @@ class Test_IntEnumPlus(unittest.TestCase):
             print(repr(_Example_Enum.field_two))
         output = ctx.get_output()
         ctx.close()
-        self.assertEqual(
-            output, "<_Example_Enum.field_one: 1>\n<_Example_Enum.field_two: 2>"
-        )
+        self.assertEqual(output, "<_Example_Enum.field_one: 1>\n<_Example_Enum.field_two: 2>")
 
     def test_printing_class_str(self) -> None:
         with lg.capture_output() as ctx:

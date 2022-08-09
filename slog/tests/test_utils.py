@@ -176,9 +176,7 @@ class Test_consecutive(unittest.TestCase):
     def test_consecutive_but_not_zero(self) -> None:
         with self.assertRaises(ValueError) as context:
             lg.consecutive(self.enum)
-        self.assertEqual(
-            str(context.exception), "Bad starting value (should be zero): 1"
-        )
+        self.assertEqual(str(context.exception), "Bad starting value (should be zero): 1")
 
     def test_unique_but_non_consecutive(self) -> None:
         with self.assertRaises(ValueError) as context:
@@ -222,9 +220,7 @@ class Test_is_dunder(unittest.TestCase):
 
     def test_falses(self) -> None:
         for key in self.false:
-            self.assertFalse(
-                lg.is_dunder(key), key + " Should not be considered dunder."
-            )
+            self.assertFalse(lg.is_dunder(key), key + " Should not be considered dunder.")
 
 
 #%% get_root_dir
