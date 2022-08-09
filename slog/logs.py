@@ -11,7 +11,7 @@ import datetime
 import doctest
 import logging
 from pathlib import Path
-from typing import Any, List, Union
+from typing import Any, List, Optional, Union
 import unittest
 
 #%% Globals
@@ -22,12 +22,12 @@ this_logger = logging.getLogger(__name__)
 #%% Functions - activate_logging
 def activate_logging(
     log_level: int = logging.INFO,
-    filename: Union[str, Path] = None,
+    filename: Optional[Union[str, Path]] = None,
     *,
-    file_level: int = None,
-    log_format: str = None,
-    file_format: str = None,
-    log_start: Union[bool, str] = None,
+    file_level: Optional[int] = None,
+    log_format: Optional[str] = None,
+    file_format: Optional[str] = None,
+    log_start: Optional[Union[bool, str]] = None,
 ) -> None:
     r"""
     Set up logging based on a user specified settings file.
