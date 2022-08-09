@@ -22,11 +22,7 @@ _F = TypeVar("_F", bound=Callable[..., Any])
 class CaptureOutputResult:
     r"""Class used to keep track of the standard output and error streams to assist the capture_output function."""
 
-    def __init__(
-        self,
-        stdout: Optional[Union[StringIO, TextIO]] = None,
-        stderr: Optional[Union[StringIO, TextIO]] = None,
-    ):
+    def __init__(self, stdout: Optional[Union[StringIO, TextIO]] = None, stderr: Optional[Union[StringIO, TextIO]] = None):
         self.stdout = stdout
         self.stderr = stderr
 

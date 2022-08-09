@@ -98,10 +98,7 @@ class _ExampleTextIOClass(TextIO):
         pass
 
     def __exit__(  # type: ignore[override]
-        self,
-        t: Optional[Type[BaseException]],
-        value: Optional[BaseException],
-        traceback: Optional[TracebackType],
+        self, t: Optional[Type[BaseException]], value: Optional[BaseException], traceback: Optional[TracebackType]
     ) -> Optional[bool]:
         pass
 
@@ -181,18 +178,12 @@ class Test_consecutive(unittest.TestCase):
     def test_unique_but_non_consecutive(self) -> None:
         with self.assertRaises(ValueError) as context:
             lg.consecutive(_Example_Consecutive2)
-        self.assertEqual(
-            str(context.exception),
-            "Non-consecutive values found in _Example_Consecutive2: skip: 9",
-        )
+        self.assertEqual(str(context.exception), "Non-consecutive values found in _Example_Consecutive2: skip: 9")
 
     def test_not_unique(self) -> None:
         with self.assertRaises(ValueError) as context:
             lg.consecutive(_Example_Consecutive3)
-        self.assertEqual(
-            str(context.exception),
-            "Duplicate values found in _Example_Consecutive3: dup -> zero",
-        )
+        self.assertEqual(str(context.exception), "Duplicate values found in _Example_Consecutive3: dup -> zero")
 
 
 #%% is_dunder
@@ -205,14 +196,7 @@ class Test_is_dunder(unittest.TestCase):
 
     def setUp(self) -> None:
         self.true = ["__dunder__", "__init__", "__a__"]
-        self.false = [
-            "init",
-            "__init__.py",
-            "_private",
-            "__private",
-            "private__",
-            "____",
-        ]
+        self.false = ["init", "__init__.py", "_private", "__private", "private__", "____"]
 
     def test_trues(self) -> None:
         for key in self.true:
