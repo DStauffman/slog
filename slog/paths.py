@@ -34,7 +34,7 @@ def get_root_dir() -> Path:
     --------
     >>> from slog import get_root_dir
     >>> print("p = ", repr(get_root_dir()))  # doctest: +ELLIPSIS
-    p = .../slog/slog')
+    p = .../slog')
 
     """
     # this folder is the root directory based on the location of this file (utils.py)

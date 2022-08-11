@@ -13,7 +13,9 @@ version_info = (1, 0, 0)
 # For inspiration, see: https://numpy.org/neps/nep-0029-deprecation_policy.html
 
 data = """Feb 22, 2022: slog 0.9
+Aug 10, 2022: slog 1.0
 """
 
 # Historical notes:
 # v0.9 Initial release after splitting from the dstauffman library.
+# v1.0 Official baseline release.
