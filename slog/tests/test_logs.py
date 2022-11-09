@@ -14,7 +14,7 @@ import slog as lg
 
 try:
     import numpy as np
-except ImportError:
+except ModuleNotFoundError:
     HAVE_NUMPY = False
 else:
     HAVE_NUMPY = True

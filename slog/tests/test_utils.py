@@ -52,49 +52,49 @@ class _ExampleTextIOClass(TextIO):
     def readlines(self, hint: int = 0) -> List[str]:
         return self._text[hint:]
 
-    def __enter__(self) -> TextIO:
+    def __enter__(self) -> TextIO:  # type: ignore[empty-body]
         pass
 
-    def fileno(self) -> int:
+    def fileno(self) -> int:  # type: ignore[empty-body]
         pass
 
     def flush(self) -> None:
         pass
 
-    def isatty(self) -> bool:
+    def isatty(self) -> bool:  # type: ignore[empty-body]
         pass
 
-    def read(self, n: int = ...) -> AnyStr:
+    def read(self, n: int = ...) -> AnyStr:  # type: ignore[empty-body]
         pass
 
-    def readable(self) -> bool:
+    def readable(self) -> bool:  # type: ignore[empty-body]
         pass
 
-    def readline(self, limit: int = ...) -> AnyStr:
+    def readline(self, limit: int = ...) -> AnyStr:  # type: ignore[empty-body]
         pass
 
-    def seek(self, offset: int, whence: int = ...) -> int:
+    def seek(self, offset: int, whence: int = ...) -> int:  # type: ignore[empty-body]
         pass
 
-    def seekable(self) -> bool:
+    def seekable(self) -> bool:  # type: ignore[empty-body]
         pass
 
-    def tell(self) -> int:
+    def tell(self) -> int:  # type: ignore[empty-body]
         pass
 
-    def truncate(self, size: Optional[int] = ...) -> int:
+    def truncate(self, size: Optional[int] = ...) -> int:  # type: ignore[empty-body]
         pass
 
-    def writable(self) -> bool:
+    def writable(self) -> bool:  # type: ignore[empty-body]
         pass
 
     def writelines(self, lines: Iterable[AnyStr]) -> None:
         pass
 
-    def __next__(self) -> AnyStr:
+    def __next__(self) -> AnyStr:  # type: ignore[empty-body]
         pass
 
-    def __iter__(self) -> Iterator[AnyStr]:
+    def __iter__(self) -> Iterator[AnyStr]:  # type: ignore[empty-body]
         pass
 
     def __exit__(  # type: ignore[override]
