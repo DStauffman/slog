@@ -7,7 +7,7 @@ Notes
 #.  Adapted to the slog library by David C. Stauffer in February 2022.
 """
 
-#%% Imports
+# %% Imports
 import doctest
 from pathlib import Path
 import sys
@@ -19,7 +19,7 @@ from slog.paths import get_root_dir
 from slog.version import version_info
 
 
-#%% Functions - main
+# %% Functions - main
 def main() -> int:
     r"""Main function called when executed using the command line api."""
     # check for no command option
@@ -50,7 +50,7 @@ def main() -> int:
     return sys.exit(return_code)
 
 
-#%% Functions - print_help
+# %% Functions - print_help
 def print_help(help_file: Optional[Path] = None) -> int:
     r"""
     Prints the contents of the README.rst file.
@@ -77,7 +77,7 @@ def print_help(help_file: Optional[Path] = None) -> int:
     return ReturnCodes.clean
 
 
-#%% Functions - print_version
+# %% Functions - print_version
 def print_version() -> int:
     r"""Prints the version of the library.
 
@@ -102,7 +102,7 @@ def print_version() -> int:
     return return_code
 
 
-#%% Unit test
+# %% Unit test
 if __name__ == "__main__":
     unittest.main(module="slog.tests.test_cli", exit=False)
     doctest.testmod(verbose=False)

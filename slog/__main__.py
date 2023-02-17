@@ -7,8 +7,8 @@ Notes
 #.  Adapted to the slog library by David C. Stauffer in February 2022.
 """
 
-#%% Imports
+# %% Imports
 from slog import main
 
-#%% Parse arguments (and will execute from there)
+# %% Parse arguments (and will execute from there)
 rc = main()

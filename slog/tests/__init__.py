@@ -6,9 +6,9 @@ Notes
 #.  Written by David C. Stauffer in February 2022.
 """
 
-#%% Imports
+# %% Imports
 # None
 
-#%% Unit test
+# %% Unit test
 if __name__ == "__main__":
     pass

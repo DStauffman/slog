@@ -8,14 +8,14 @@ Notes
 #.  Adapted into slog library by David C. Stauffer in February 2022.
 """
 
-#%% Imports
+# %% Imports
 import doctest
 from functools import lru_cache
 from pathlib import Path
 import unittest
 
 
-#%% Functions - get_root_dir
+# %% Functions - get_root_dir
 @lru_cache
 def get_root_dir() -> Path:
     r"""
@@ -41,7 +41,7 @@ def get_root_dir() -> Path:
     return Path(__file__).resolve().parent
 
 
-#%% Functions - get_tests_dir
+# %% Functions - get_tests_dir
 @lru_cache
 def get_tests_dir() -> Path:
     r"""
@@ -67,7 +67,7 @@ def get_tests_dir() -> Path:
     return get_root_dir() / "tests"
 
 
-#%% Unit test
+# %% Unit test
 if __name__ == "__main__":
     unittest.main(module="slog.tests.test_paths", exit=False)
     doctest.testmod(verbose=False)

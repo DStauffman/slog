@@ -7,13 +7,13 @@ Notes
 #.  Adapted to slog library by David C. Stauffer in February 2022.
 """
 
-#%% Imports
+# %% Imports
 import unittest
 
 import slog as lg
 
 
-#%% main
+# %% main
 class Test_main(unittest.TestCase):
     r"""
     Tests the main function with the following cases:
@@ -23,7 +23,7 @@ class Test_main(unittest.TestCase):
     pass  # TODO: write this
 
 
-#%% print_help
+# %% print_help
 class Test_print_help(unittest.TestCase):
     r"""
     Tests the print_help function with the following cases:
@@ -47,7 +47,7 @@ class Test_print_help(unittest.TestCase):
         self.assertTrue(output.startswith('r"""\nTest file for the `cli` module'))
 
 
-#%% print_version
+# %% print_version
 class Test_print_version(unittest.TestCase):
     r"""
     Tests the print_version function with the following cases:
@@ -62,6 +62,6 @@ class Test_print_version(unittest.TestCase):
         self.assertIn(".", output)
 
 
-#%% Unit test execution
+# %% Unit test execution
 if __name__ == "__main__":
     unittest.main(exit=False)

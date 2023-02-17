@@ -6,7 +6,7 @@ Notes
 #.  Written by David C. Stauffer in March 2015.
 #.  Copied to the slog library in February 2022 to avoid circular dependencies.
 """
-#%% Imports
+# %% Imports
 from contextlib import contextmanager
 import doctest
 from io import StringIO
@@ -14,11 +14,11 @@ import sys
 from typing import Any, Callable, Iterator, Optional, TextIO, TypeVar, Union
 import unittest
 
-#%% Constants
+# %% Constants
 _F = TypeVar("_F", bound=Callable[..., Any])
 
 
-#%% Classes
+# %% Classes
 class CaptureOutputResult:
     r"""Class used to keep track of the standard output and error streams to assist the capture_output function."""
 
@@ -57,7 +57,7 @@ class CaptureOutputResult:
         raise Exception(f"Unknown type {type(std)}")
 
 
-#%% Decorators - consecutive
+# %% Decorators - consecutive
 def consecutive(enumeration: _F) -> _F:
     r"""Class decorator for enumerations ensuring unique and consecutive member values that start from zero."""
     duplicates = []
@@ -80,7 +80,7 @@ def consecutive(enumeration: _F) -> _F:
     return enumeration
 
 
-#%% Functions - is_dunder
+# %% Functions - is_dunder
 def is_dunder(name: str) -> bool:
     """
     Returns True if a __dunder__ name, False otherwise.
@@ -114,7 +114,7 @@ def is_dunder(name: str) -> bool:
     return len(name) > 4 and name[:2] == name[-2:] == "__" and name[2] != "_" and name[-3] != "_"
 
 
-#%% Functions - capture_output
+# %% Functions - capture_output
 @contextmanager
 def capture_output(mode: str = "out") -> Iterator[CaptureOutputResult]:
     r"""
@@ -177,7 +177,7 @@ def capture_output(mode: str = "out") -> Iterator[CaptureOutputResult]:
         sys.stdout, sys.stderr = old_out, old_err
 
 
-#%% Unit test
+# %% Unit test
 if __name__ == "__main__":
     unittest.main(module="slog.tests.test_utils", exit=False)
     doctest.testmod(verbose=False)

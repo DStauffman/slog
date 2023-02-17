@@ -7,7 +7,7 @@ Notes
 #.  Adapted to slog library by David C. Stauffer in February 2022.
 """
 
-#%% Imports
+# %% Imports
 import inspect
 from io import StringIO
 import os
@@ -103,7 +103,7 @@ class _ExampleTextIOClass(TextIO):
         pass
 
 
-#%% CaptureOutputResult
+# %% CaptureOutputResult
 class Test_CaptureOutputResult(unittest.TestCase):
     r"""
     Tests the CaptureOutputResult class with the following cases:
@@ -154,7 +154,7 @@ class Test_CaptureOutputResult(unittest.TestCase):
         self.assertEqual(text, "Testing\nMore testing.")
 
 
-#%% consecutive
+# %% consecutive
 class Test_consecutive(unittest.TestCase):
     r"""
     Tests the consecutive function with the following cases:
@@ -186,7 +186,7 @@ class Test_consecutive(unittest.TestCase):
         self.assertEqual(str(context.exception), "Duplicate values found in _Example_Consecutive3: dup -> zero")
 
 
-#%% is_dunder
+# %% is_dunder
 class Test_is_dunder(unittest.TestCase):
     r"""
     Tests the is_dunder function with the following cases:
@@ -207,7 +207,7 @@ class Test_is_dunder(unittest.TestCase):
             self.assertFalse(lg.is_dunder(key), key + " Should not be considered dunder.")
 
 
-#%% get_root_dir
+# %% get_root_dir
 class Test_get_root_dir(unittest.TestCase):
     r"""
     Tests the get_root_dir function with the following cases:
@@ -222,7 +222,7 @@ class Test_get_root_dir(unittest.TestCase):
         self.assertTrue(folder.is_dir())
 
 
-#%% capture_output
+# %% capture_output
 class Test_capture_output(unittest.TestCase):
     r"""
     Tests the capture_output function with the following cases:
@@ -260,6 +260,6 @@ class Test_capture_output(unittest.TestCase):
                 print("Lost values")  # pragma: no cover
 
 
-#%% Unit test execution
+# %% Unit test execution
 if __name__ == "__main__":
     unittest.main(exit=False)

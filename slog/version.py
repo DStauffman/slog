@@ -6,7 +6,7 @@ Notes
 #.  Written by David C. Stauffer in February 2022.
 """
 
-#%% Constants
+# %% Constants
 version_info = (1, 0, 0)
 
 # Below is data about the minor release history for potential use in deprecating older support.

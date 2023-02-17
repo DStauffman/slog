@@ -7,7 +7,7 @@ Notes
 #.  Adapted by David C. Stauffer in February 2022 for slog library.
 """
 
-#%% Imports
+# %% Imports
 import inspect
 import os
 import pathlib
@@ -16,7 +16,7 @@ import unittest
 import slog as lg
 
 
-#%% get_root_dir
+# %% get_root_dir
 class Test_get_root_dir(unittest.TestCase):
     r"""
     Tests the get_root_dir function with the following cases:
@@ -31,7 +31,7 @@ class Test_get_root_dir(unittest.TestCase):
         self.assertTrue(folder.is_dir())
 
 
-#%% get_tests_dir
+# %% get_tests_dir
 class Test_get_tests_dir(unittest.TestCase):
     r"""
     Tests the get_tests_dir function with the following cases:
@@ -43,6 +43,6 @@ class Test_get_tests_dir(unittest.TestCase):
         self.assertEqual(str(folder), os.path.join(str(lg.get_root_dir()), "tests"))
 
 
-#%% Unit test execution
+# %% Unit test execution
 if __name__ == "__main__":
     unittest.main(exit=False)

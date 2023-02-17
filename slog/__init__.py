@@ -3,7 +3,7 @@ The "slog" library extends the built-in Python logging module with some convenie
 
 """
 
-#%% Imports
+# %% Imports
 from .cli import main as main, print_help as print_help, print_version as print_version
 from .enums import IntEnumPlus as IntEnumPlus, ReturnCodes as ReturnCodes, LogLevel as LogLevel
 from .logs import (
@@ -21,9 +21,9 @@ from .utils import (
 )
 from .version import version_info as version_info
 
-#%% Constants
+# %% Constants
 __version__ = ".".join(str(x) for x in version_info)
 
-#%% Unit test
+# %% Unit test
 if __name__ == "__main__":
     pass

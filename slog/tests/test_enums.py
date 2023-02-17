@@ -6,7 +6,7 @@ Notes
 #.  Written by David C. Stauffer in July 2015.
 """
 
-#%% Imports
+# %% Imports
 from enum import unique
 from typing import ClassVar
 import unittest
@@ -14,14 +14,14 @@ import unittest
 import slog as lg
 
 
-#%% Support
+# %% Support
 class _Example_Enum(lg.IntEnumPlus):
     field_one: ClassVar[int] = 1
     field_two: ClassVar[int] = 2
     field_ten: ClassVar[int] = 10
 
 
-#%% IntEnumPlus
+# %% IntEnumPlus
 class Test_IntEnumPlus(unittest.TestCase):
     r"""
     Tests the IntEnumPlus class by making a enum instance and testing all the methods.
@@ -91,7 +91,7 @@ class Test_IntEnumPlus(unittest.TestCase):
                 c = 2
 
 
-#%% ReturnCodes
+# %% ReturnCodes
 class Test_ReturnCodes(unittest.TestCase):
     r"""
     Tests the ReturnCodes enumerator with the following cases:
@@ -114,7 +114,7 @@ class Test_ReturnCodes(unittest.TestCase):
             self.assertIsInstance(value, int)
 
 
-#%% LogLevel
+# %% LogLevel
 class Test_LogLevel(unittest.TestCase):
     r"""
     Tests the LogLevel enumerator with the following cases:
@@ -124,6 +124,6 @@ class Test_LogLevel(unittest.TestCase):
     pass
 
 
-#%% Unit test execution
+# %% Unit test execution
 if __name__ == "__main__":
     unittest.main(exit=False)

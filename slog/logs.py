@@ -6,7 +6,7 @@ Notes
 #.  Split out of utils by David C. Stauffer in July 2019.
 """
 
-#%% Imports
+# %% Imports
 import datetime
 import doctest
 import logging
@@ -14,12 +14,12 @@ from pathlib import Path
 from typing import Any, List, Optional, Union
 import unittest
 
-#%% Globals
+# %% Globals
 root_logger = logging.getLogger("")
 this_logger = logging.getLogger(__name__)
 
 
-#%% Functions - activate_logging
+# %% Functions - activate_logging
 def activate_logging(
     log_level: int = logging.INFO,
     filename: Optional[Union[str, Path]] = None,
@@ -99,7 +99,7 @@ def activate_logging(
         this_logger.log(logging.WARNING, text)
 
 
-#%% Functions - deactivate_logging
+# %% Functions - deactivate_logging
 def deactivate_logging() -> None:
     r"""
     Tear down logging.
@@ -131,7 +131,7 @@ def deactivate_logging() -> None:
         raise ValueError("Something bad happended when trying to close the logger.")  # pragma: no cover
 
 
-#%% Functions - flush_logging
+# %% Functions - flush_logging
 def flush_logging() -> None:
     r"""
     Flush the loggers.
@@ -151,7 +151,7 @@ def flush_logging() -> None:
         handler.flush()
 
 
-#%% Functions - log_multiline
+# %% Functions - log_multiline
 def log_multiline(logger: logging.Logger, log_level: int, message: Any, *args: Any) -> None:
     r"""
     Passes messages through to the logger with options for multiline messages.
@@ -202,7 +202,7 @@ def log_multiline(logger: logging.Logger, log_level: int, message: Any, *args: A
         logger.log(log_level, msg)
 
 
-#%% Unit test
+# %% Unit test
 if __name__ == "__main__":
     unittest.main(module="slog.tests.test_logs", exit=False)
     doctest.testmod(verbose=False)

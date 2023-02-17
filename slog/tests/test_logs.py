@@ -6,7 +6,7 @@ Notes
 #.  Written by David C. Stauffer in July 2019.
 """
 
-#%% Imports
+# %% Imports
 import logging
 import unittest
 
@@ -20,7 +20,7 @@ else:
     HAVE_NUMPY = True
 
 
-#%% activate_logging, deactivate_logging and flush_logging
+# %% activate_logging, deactivate_logging and flush_logging
 class Test_act_deact_logging(unittest.TestCase):
     r"""
     Tests the activate_logging and deactivate_logging functions with the following cases:
@@ -65,7 +65,7 @@ class Test_act_deact_logging(unittest.TestCase):
         self.filename.unlink(missing_ok=True)
 
 
-#%% log_multiline
+# %% log_multiline
 class Test_log_multiline(unittest.TestCase):
     r"""
     Tests the log_multiline function with the following cases:
@@ -137,6 +137,6 @@ class Test_log_multiline(unittest.TestCase):
         lg.deactivate_logging()
 
 
-#%% Unit test execution
+# %% Unit test execution
 if __name__ == "__main__":
     unittest.main(exit=False)

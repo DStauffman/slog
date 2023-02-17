@@ -9,7 +9,7 @@ Notes
 #.  Split into a stand-alone library by David C. Stauffer in February 2022.
 """
 
-#%% Imports
+# %% Imports
 import doctest
 from enum import Enum, EnumMeta
 import logging
@@ -19,7 +19,7 @@ import unittest
 from slog.utils import consecutive, is_dunder
 
 
-#%% MetaClasses - _EnumMetaPlus
+# %% MetaClasses - _EnumMetaPlus
 class _EnumMetaPlus(EnumMeta):
     r"""
     Overrides the repr/str methods of the EnumMeta class to display all possible values.
@@ -70,7 +70,7 @@ class _EnumMetaPlus(EnumMeta):
         return max(cls.__members__.values())
 
 
-#%% Classes - IntEnumPlus
+# %% Classes - IntEnumPlus
 class IntEnumPlus(int, Enum, metaclass=_EnumMetaPlus):
     r"""
     Custom IntEnum class based on _EnumMetaPlus metaclass to get more details from repr/str.
@@ -83,7 +83,7 @@ class IntEnumPlus(int, Enum, metaclass=_EnumMetaPlus):
         return f"{self.__class__.__name__}.{self.name}: {self.value}"
 
 
-#%% Enums - ReturnCodes
+# %% Enums - ReturnCodes
 @consecutive
 class ReturnCodes(IntEnumPlus):
     r"""
@@ -108,7 +108,7 @@ class ReturnCodes(IntEnumPlus):
     # fmt: on
 
 
-#%% Enums - LogLevel
+# %% Enums - LogLevel
 class LogLevel(IntEnumPlus):
     r"""
     Add 10-ish custom levels that give more degradation beween WARNING, INFO and DEBUG.
@@ -152,7 +152,7 @@ class LogLevel(IntEnumPlus):
     L20: ClassVar[int] = 0
 
 
-#%% Register custom logging levels
+# %% Register custom logging levels
 logging.addLevelName(LogLevel.L0, "L0")
 logging.addLevelName(LogLevel.L1, "L1")
 logging.addLevelName(LogLevel.L2, "L2")
@@ -168,11 +168,11 @@ logging.addLevelName(LogLevel.L11, "L11")
 logging.addLevelName(LogLevel.L12, "L12")
 logging.addLevelName(LogLevel.L20, "L20")
 
-#%% Configure default logging if not already set
+# %% Configure default logging if not already set
 logging.basicConfig(level=logging.WARNING)
 
 
-#%% Unit test
+# %% Unit test
 if __name__ == "__main__":
     unittest.main(module="slog.tests.test_enums", exit=False)
     doctest.testmod(verbose=False)
