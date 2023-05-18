@@ -74,6 +74,7 @@ class _EnumMetaPlus(EnumMeta):
 class IntEnumPlus(int, Enum, metaclass=_EnumMetaPlus):
     r"""
     Custom IntEnum class based on _EnumMetaPlus metaclass to get more details from repr/str.
+
     Plus it includes additional methods for convenient retrieval of number of values, their names,
     mins and maxes.
     """
@@ -112,6 +113,7 @@ class ReturnCodes(IntEnumPlus):
 class LogLevel(IntEnumPlus):
     r"""
     Add 10-ish custom levels that give more degradation beween WARNING, INFO and DEBUG.
+
         50 (CRITICAL, FATAL)
         40 (ERROR)
     L0  35

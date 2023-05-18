@@ -54,7 +54,7 @@ class CaptureOutputResult:
         if isinstance(std, TextIO):
             return "\n".join(std.readlines())
 
-        raise Exception(f"Unknown type {type(std)}")
+        raise Exception(f"Unknown type {type(std)}")  # pylint: disable=broad-exception-raised
 
 
 # %% Decorators - consecutive
