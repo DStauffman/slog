@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "slog"
-version = "1.0.1"
+version = "1.1.0"
 description = "Extends the built-in Python logging module with some convenient functions and custom log levels."
 license = "LGPLv3"
 authors = ["David C. Stauffer <dstauffman@yahoo.com>"]
@@ -19,25 +19,26 @@ classifiers = [
     "Programming Langauge :: Python :: 3.9",
     "Programming Langauge :: Python :: 3.10",
     "Programming Langauge :: Python :: 3.11",
+    "Programming Langauge :: Python :: 3.12",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Typing :: Typed",
 ]
 include = ["CHANGELOG.md", "LICENSE.txt", "pyproject.toml", "README.rst", "setup.cfg"]
 
 [tool.poetry.dependencies]
-python = ">=3.9, <3.12"
-black = {version = "^23.0", optional = true}
-flake8 = {version = "^5.0", optional = true}
-isort = {version = "^5.10", optional = true}
-mypy = {version = "^1.0", optional = true}
-pylint = {version = "^2.15", optional = true}
-pycodestyle = {version = "^2.9", optional = true}
-pytest = {version = "^7.2", optional = true}
+python = ">=3.9, <3.13"
+black = {version = ">23.0", optional = true}
+flake8 = {version = "^6.0", optional = true}
+isort = {version = "^5.9", optional = true}
+mypy = {version = "^1.5", optional = true}
+pylint = {version = "^2.16", optional = true}
+pycodestyle = {version = "^2.10", optional = true}
+pytest = {version = "^7.4", optional = true}
 pytest-cov = {version = "^4.0", optional = true}
 
 [tool.poetry.dev-dependencies]
-pytest = "^7.2"
-pytest-cov = "^4.0.0"
+pytest = "^7.4"
+pytest-cov = "^4.0"
 
 [tool.poetry.extras]
 static = ["black", "flake8", "isort", "mypy", "pycodestyle", "pylint"]
@@ -47,7 +48,7 @@ slog = "slog.cli:main"
 
 [tool.black]
 line-length = 128
-target_version = ["py39"]
+target_version = ["py39", "py310", "py311"]
 
 [tool.coverage.run]
 branch = true

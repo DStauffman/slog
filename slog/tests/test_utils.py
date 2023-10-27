@@ -64,13 +64,13 @@ class _ExampleTextIOClass(TextIO):
     def isatty(self) -> bool:  # type: ignore[empty-body]
         pass
 
-    def read(self, n: int = ...) -> AnyStr:  # type: ignore[empty-body]
+    def read(self, n: int = ...) -> AnyStr:  # type: ignore[empty-body, type-var]
         pass
 
     def readable(self) -> bool:  # type: ignore[empty-body]
         pass
 
-    def readline(self, limit: int = ...) -> AnyStr:  # type: ignore[empty-body]
+    def readline(self, limit: int = ...) -> AnyStr:  # type: ignore[empty-body, type-var]
         pass
 
     def seek(self, offset: int, whence: int = ...) -> int:  # type: ignore[empty-body]
@@ -91,7 +91,7 @@ class _ExampleTextIOClass(TextIO):
     def writelines(self, lines: Iterable[AnyStr]) -> None:
         pass
 
-    def __next__(self) -> AnyStr:  # type: ignore[empty-body]
+    def __next__(self) -> AnyStr:  # type: ignore[empty-body, type-var]
         pass
 
     def __iter__(self) -> Iterator[AnyStr]:  # type: ignore[empty-body]
