@@ -6,12 +6,13 @@ Notes
 #.  Written by David C. Stauffer in March 2015.
 #.  Copied to the slog library in February 2022 to avoid circular dependencies.
 """
+
 # %% Imports
 from contextlib import contextmanager
 import doctest
 from io import StringIO
 import sys
-from typing import Any, Callable, Iterator, Optional, TextIO, TypeVar, Union
+from typing import Any, Callable, Iterator, TextIO, TypeVar
 import unittest
 
 # %% Constants
@@ -22,7 +23,7 @@ _F = TypeVar("_F", bound=Callable[..., Any])
 class CaptureOutputResult:
     r"""Class used to keep track of the standard output and error streams to assist the capture_output function."""
 
-    def __init__(self, stdout: Optional[Union[StringIO, TextIO]] = None, stderr: Optional[Union[StringIO, TextIO]] = None):
+    def __init__(self, stdout: StringIO | TextIO | None = None, stderr: StringIO | TextIO | None = None):
         self.stdout = stdout
         self.stderr = stderr
 
@@ -43,7 +44,7 @@ class CaptureOutputResult:
         return CaptureOutputResult.get_stream(self.stderr)
 
     @staticmethod
-    def get_stream(std: Optional[Union[StringIO, TextIO]]) -> str:
+    def get_stream(std: StringIO | TextIO | None) -> str:
         r"""Gets the contents of the given stream."""
         if not std:
             return ""

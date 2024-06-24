@@ -71,6 +71,7 @@ class Test_log_multiline(unittest.TestCase):
     Tests the log_multiline function with the following cases:
         TBD
     """
+
     level: int
     logger: logging.Logger
 

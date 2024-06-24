@@ -13,7 +13,7 @@ Notes
 import doctest
 from enum import Enum, EnumMeta
 import logging
-from typing import ClassVar, List
+from typing import ClassVar
 import unittest
 
 from slog.utils import consecutive, is_dunder
@@ -43,13 +43,13 @@ class _EnumMetaPlus(EnumMeta):
             text = f'"{cls.__name__}" does not have an attribute of "{name}"'
             raise AttributeError(text) from None
 
-    def list_of_names(cls) -> List[str]:
+    def list_of_names(cls) -> list[str]:
         r"""Return a list of all the names within the enumerator."""
         # look for class.name: pattern, ignore class, return names only
         names = list(cls.__members__)
         return names
 
-    def list_of_values(cls) -> List[int]:
+    def list_of_values(cls) -> list[int]:
         r"""Return a list of all the values within the enumerator."""
         values = list(cls.__members__.values())  # type: ignore[var-annotated]
         return values
@@ -98,6 +98,7 @@ class ReturnCodes(IntEnumPlus):
     ReturnCodes.clean: 0
 
     """
+
     # fmt: off
     clean: ClassVar[int]            = 0  # Clean exit
     bad_command: ClassVar[int]      = 1  # Unexpected command
@@ -138,6 +139,7 @@ class LogLevel(IntEnumPlus):
     LogLevel.L5: 20
 
     """
+
     L0: ClassVar[int] = 35
     L1: ClassVar[int] = 30
     L2: ClassVar[int] = 28
@@ -172,7 +174,6 @@ logging.addLevelName(LogLevel.L20, "L20")
 
 # %% Configure default logging if not already set
 logging.basicConfig(level=logging.WARNING)
-
 
 # %% Unit test
 if __name__ == "__main__":

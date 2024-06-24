@@ -14,7 +14,7 @@ import os
 import pathlib
 import sys
 from types import TracebackType
-from typing import AnyStr, ClassVar, Iterable, Iterator, List, Optional, TextIO, Type
+from typing import AnyStr, ClassVar, Iterable, Iterator, TextIO, Type
 import unittest
 
 import slog as lg
@@ -40,7 +40,7 @@ class _Example_Consecutive3(lg.IntEnumPlus):
 
 class _ExampleTextIOClass(TextIO):
     def __init__(self) -> None:
-        self._text: List[str] = []
+        self._text: list[str] = []
 
     def write(self, text: str) -> int:
         self._text.append(text)
@@ -49,7 +49,7 @@ class _ExampleTextIOClass(TextIO):
     def close(self) -> None:
         self._text = []
 
-    def readlines(self, hint: int = 0) -> List[str]:
+    def readlines(self, hint: int = 0) -> list[str]:
         return self._text[hint:]
 
     def __enter__(self) -> TextIO:  # type: ignore[empty-body]
@@ -82,7 +82,7 @@ class _ExampleTextIOClass(TextIO):
     def tell(self) -> int:  # type: ignore[empty-body]
         pass
 
-    def truncate(self, size: Optional[int] = ...) -> int:  # type: ignore[empty-body]
+    def truncate(self, size: int | None = ...) -> int:  # type: ignore[empty-body]
         pass
 
     def writable(self) -> bool:  # type: ignore[empty-body]
@@ -98,8 +98,8 @@ class _ExampleTextIOClass(TextIO):
         pass
 
     def __exit__(  # type: ignore[override]
-        self, t: Optional[Type[BaseException]], value: Optional[BaseException], traceback: Optional[TracebackType]
-    ) -> Optional[bool]:
+        self, t: Type[BaseException] | None, value: BaseException | None, traceback: TracebackType | None
+    ) -> bool | None:
         pass
 
 

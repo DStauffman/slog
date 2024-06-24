@@ -30,9 +30,6 @@
 # Unix files to always have LF
 *.sh text eol=lf
 
-# Specific executables
-/dcs text eol=lf
-
 # known binary files to not modify
 *.dll binary
 *.doc binary

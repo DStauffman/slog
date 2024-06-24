@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "slog"
-version = "1.1.0"
+version = "1.2.0"
 description = "Extends the built-in Python logging module with some convenient functions and custom log levels."
 license = "LGPLv3"
 authors = ["David C. Stauffer <dstauffman@yahoo.com>"]
@@ -16,7 +16,6 @@ classifiers = [
     "Topic :: Software Development",
     "Natural Language :: English",
     "Programming Language :: Python :: 3",
-    "Programming Langauge :: Python :: 3.9",
     "Programming Langauge :: Python :: 3.10",
     "Programming Langauge :: Python :: 3.11",
     "Programming Langauge :: Python :: 3.12",
@@ -26,10 +25,10 @@ classifiers = [
 include = ["CHANGELOG.md", "LICENSE.txt", "pyproject.toml", "README.rst", "setup.cfg"]
 
 [tool.poetry.dependencies]
-python = ">=3.9, <3.13"
+python = ">=3.10, <3.13"
 black = {version = ">23.0", optional = true}
 flake8 = {version = "^6.0", optional = true}
-isort = {version = "^5.9", optional = true}
+isort = {version = "^5.10", optional = true}
 mypy = {version = "^1.5", optional = true}
 pylint = {version = "^2.16", optional = true}
 pycodestyle = {version = "^2.10", optional = true}
@@ -91,7 +90,7 @@ directory = "coverage_html_report"
 output = "coverage_html_report/coverage.xml"
 
 [tool.isort]
-py_version = 39
+py_version = 311
 profile = "black"
 line_length = 128
 combine_as_imports = true

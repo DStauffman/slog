@@ -11,7 +11,7 @@ import datetime
 import doctest
 import logging
 from pathlib import Path
-from typing import Any, List, Optional, Union
+from typing import Any
 import unittest
 
 # %% Globals
@@ -22,12 +22,12 @@ this_logger = logging.getLogger(__name__)
 # %% Functions - activate_logging
 def activate_logging(
     log_level: int = logging.INFO,
-    filename: Optional[Union[str, Path]] = None,
+    filename: str | Path | None = None,
     *,
-    file_level: Optional[int] = None,
-    log_format: Optional[str] = None,
-    file_format: Optional[str] = None,
-    log_start: Optional[Union[bool, str]] = None,
+    file_level: int | None = None,
+    log_format: str | None = None,
+    file_format: str | None = None,
+    log_start: bool | str | None = None,
 ) -> None:
     r"""
     Set up logging based on a user specified settings file.
@@ -180,7 +180,7 @@ def log_multiline(logger: logging.Logger, log_level: int, message: Any, *args: A
 
     """
 
-    def _get_message_list(message: Any) -> List[str]:
+    def _get_message_list(message: Any) -> list[str]:
         if isinstance(message, list):
             # if message is already a list, then make sure everything is already a string
             if all(isinstance(x, str) for x in message):

@@ -11,7 +11,6 @@ Notes
 import doctest
 from pathlib import Path
 import sys
-from typing import Optional
 import unittest
 
 from slog.enums import ReturnCodes
@@ -51,7 +50,7 @@ def main() -> int:
 
 
 # %% Functions - print_help
-def print_help(help_file: Optional[Path] = None) -> int:
+def print_help(help_file: Path | None = None) -> int:
     r"""
     Prints the contents of the README.rst file.
 

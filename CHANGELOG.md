@@ -1,5 +1,9 @@
 # Change Log
 
+## June 2024 (by David C. Stauffer)
+
+* Drop support for Python v3.9, and use newer typing features like dict, list, tuple and | for Union
+
 ## August 2022 (by David C. Stauffer)
 
 * Reworked the capture_output function to internally use a Class to abstract the details.
