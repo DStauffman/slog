@@ -11,7 +11,7 @@ Written by David C. Stauffer in March 2015 and separated into a stand-alone libr
 Library dependencies
 ********************
 
-This code is currently tested and maintained predominantly on Python v3.10, but will run on any version back to v3.6 or newer.
+This code is currently tested and maintained predominantly on Python v3.13, but will run on any version back to v3.10 or newer.
 
 There are no external dependencies, but the code will use pytest as a test runner if it exists, reverting back to unittest otherwise, and has some tests that check features with numpy if that exists, and will otherwise skip those tests.
 

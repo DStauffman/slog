@@ -8,7 +8,6 @@ Notes
 
 # %% Imports
 from enum import unique
-from typing import ClassVar
 import unittest
 
 import slog as lg
@@ -16,9 +15,9 @@ import slog as lg
 
 # %% Support
 class _Example_Enum(lg.IntEnumPlus):
-    field_one: ClassVar[int] = 1
-    field_two: ClassVar[int] = 2
-    field_ten: ClassVar[int] = 10
+    field_one = 1
+    field_two = 2
+    field_ten = 10
 
 
 # %% IntEnumPlus

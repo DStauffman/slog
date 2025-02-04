@@ -14,28 +14,28 @@ import os
 import pathlib
 import sys
 from types import TracebackType
-from typing import AnyStr, ClassVar, Iterable, Iterator, TextIO, Type
+from typing import AnyStr, Iterable, Iterator, TextIO, Type
 import unittest
 
 import slog as lg
 
 
 class _Example_Consecutive(lg.IntEnumPlus):
-    zero: ClassVar[int] = 0
-    one: ClassVar[int] = 1
-    two: ClassVar[int] = 2
+    zero = 0
+    one = 1
+    two = 2
 
 
 class _Example_Consecutive2(lg.IntEnumPlus):
-    zero: ClassVar[int] = 0
-    one: ClassVar[int] = 1
-    skip: ClassVar[int] = 9
+    zero = 0
+    one = 1
+    skip = 9
 
 
 class _Example_Consecutive3(lg.IntEnumPlus):
-    zero: ClassVar[int] = 0
-    one: ClassVar[int] = 1
-    dup: ClassVar[int] = 0
+    zero = 0
+    one = 1
+    dup = 0
 
 
 class _ExampleTextIOClass(TextIO):

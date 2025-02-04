@@ -13,7 +13,6 @@ Notes
 import doctest
 from enum import Enum, EnumMeta
 import logging
-from typing import ClassVar
 import unittest
 
 from slog.utils import consecutive, is_dunder
@@ -100,13 +99,13 @@ class ReturnCodes(IntEnumPlus):
     """
 
     # fmt: off
-    clean: ClassVar[int]            = 0  # Clean exit
-    bad_command: ClassVar[int]      = 1  # Unexpected command
-    bad_folder: ClassVar[int]       = 2  # Folder to execute a command in doesn't exist
-    bad_help_file: ClassVar[int]    = 3  # help file doesn't exist
-    bad_version: ClassVar[int]      = 4  # version information cannot be determined
-    test_failures: ClassVar[int]    = 5  # A test ran to completion, but failed its criteria
-    no_coverage_tool: ClassVar[int] = 6  # Coverage tool is not installed
+    clean            = 0  # Clean exit
+    bad_command      = 1  # Unexpected command
+    bad_folder       = 2  # Folder to execute a command in doesn't exist
+    bad_help_file    = 3  # help file doesn't exist
+    bad_version      = 4  # version information cannot be determined
+    test_failures    = 5  # A test ran to completion, but failed its criteria
+    no_coverage_tool = 6  # Coverage tool is not installed
     # fmt: on
 
 
@@ -140,20 +139,20 @@ class LogLevel(IntEnumPlus):
 
     """
 
-    L0: ClassVar[int] = 35
-    L1: ClassVar[int] = 30
-    L2: ClassVar[int] = 28
-    L3: ClassVar[int] = 26
-    L4: ClassVar[int] = 24
-    L5: ClassVar[int] = 20
-    L6: ClassVar[int] = 18
-    L7: ClassVar[int] = 16
-    L8: ClassVar[int] = 14
-    L9: ClassVar[int] = 12
-    L10: ClassVar[int] = 10
-    L11: ClassVar[int] = 9
-    L12: ClassVar[int] = 8
-    L20: ClassVar[int] = 0
+    L0 = 35
+    L1 = 30
+    L2 = 28
+    L3 = 26
+    L4 = 24
+    L5 = 20
+    L6 = 18
+    L7 = 16
+    L8 = 14
+    L9 = 12
+    L10 = 10
+    L11 = 9
+    L12 = 8
+    L20 = 0
 
 
 # %% Register custom logging levels
