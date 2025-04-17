@@ -174,7 +174,7 @@ def log_multiline(logger: logging.Logger, log_level: int, message: Any, *args: A
     >>> logger = logging.getLogger("Test")
     >>> log_level = LogLevel.L5
     >>> activate_logging(log_level)
-    >>> log_multiline(logger, log_level, "Multi-line\nmessage") # doctest: +SKIP
+    >>> log_multiline(logger, log_level, "Multi-line\nmessage")  # doctest: +SKIP
 
     >>> deactivate_logging()
 

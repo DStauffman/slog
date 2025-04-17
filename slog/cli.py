@@ -62,7 +62,7 @@ def print_help(help_file: Path | None = None) -> int:
     Examples
     --------
     >>> from slog import print_help
-    >>> print_help() # doctest: +SKIP
+    >>> print_help()  # doctest: +SKIP
 
     """
     if help_file is None:

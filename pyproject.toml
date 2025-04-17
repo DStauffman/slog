@@ -1,16 +1,21 @@
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=77.0"]
+build-backend = "setuptools.build_meta"
 
-[tool.poetry]
+[project]
 name = "slog"
-version = "1.3.0"
+version = "1.4.0"
 description = "Extends the built-in Python logging module with some convenient functions and custom log levels."
-license = "LGPLv3"
-authors = ["David C. Stauffer <dstauffman@yahoo.com>"]
-maintainers = ["David C. Stauffer <dstauffman@yahoo.com>"]
 readme = "README.rst"
-repository = "https://github.com/DStauffman/slog"
+dependencies = []
+requires-python = ">=3.10,<4.0"
+authors = [
+  {name = "David C. Stauffer", email = "dstauffman@yahoo.com"},
+]
+maintainers = [
+  {name = "David C. Stauffer", email = "dstauffman@yahoo.com"},
+]
+license = { file = "LICENSE" }
 keywords = ["packaging", "logging"]
 classifiers = [
     "Topic :: Software Development",
@@ -23,28 +28,24 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Typing :: Typed",
 ]
-include = ["CHANGELOG.md", "LICENSE.txt", "pyproject.toml", "README.rst", "setup.cfg"]
 
-[tool.poetry.dependencies]
-python = ">=3.10, <3.13"
-black = {version = ">24.0", optional = true}
-flake8 = {version = "^6.0", optional = true}
-isort = {version = "^5.10", optional = true}
-mypy = {version = "^1.5", optional = true}
-pylint = {version = "^2.16", optional = true}
-pycodestyle = {version = "^2.10", optional = true}
-pytest = {version = "^7.4", optional = true}
-pytest-cov = {version = "^4.0", optional = true}
+[project.optional-dependencies]
+static = ["black>=25.0", "flake8>=6.0", "isort>=5.10", "mypy>=1.5", "pycodestyle>=2.10", "pylint>=2.16"]
+test = ["pytest>=7.4", "pytest-cov>=4.0"]
 
-[tool.poetry.dev-dependencies]
-pytest = "^7.4"
-pytest-cov = "^4.0"
+[project.urls]
+Repository = "https://github.com/DStauffman/slog"
+Issues = "https://github.com/DStauffman/slog/issues"
+Changelog = "https://github.com/DStauffman/slog/blob/main/CHANGELOG.md"
 
-[tool.poetry.extras]
-static = ["black", "flake8", "isort", "mypy", "pycodestyle", "pylint"]
-
-[tool.poetry.scripts]
+[project.scripts]
 slog = "slog.cli:main"
+
+[tool.setuptools.package-data]
+slog = ["CHANGELOG.md", "LICENSE.txt", "pyproject.toml", "README.rst", "setup.cfg"]
+
+[tool.bandit]
+skips = ["B101"]
 
 [tool.black]
 line-length = 128
