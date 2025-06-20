@@ -7,7 +7,7 @@ Notes
 """
 
 # %% Constants
-version_info = (1, 4, 0)
+version_info = (1, 5, 0)
 
 # Below is data about the minor release history for potential use in deprecating older support.
 # For inspiration, see: https://numpy.org/neps/nep-0029-deprecation_policy.html
@@ -18,6 +18,7 @@ Oct 26, 2023: slog 1.1
 Jun 24, 2024: slog 1.2
 Feb 04, 2025: slog 1.3
 Apr 16, 2025: slog 1.4
+Jun 20, 2025: slog 1.5
 """
 
 # Historical notes:
@@ -26,4 +27,5 @@ Apr 16, 2025: slog 1.4
 # v1.1 Updates to black v23, mypy v1.6, Python v3.12.
 # v1.2 Use newer typing standards from Python v3.10+.
 # v1.3 Support Python v3.13, drop explicit ClassVar decorations.
-# v1.4 Ditch poetry entirely, use setuptools (and uv instead)
+# v1.4 Ditch poetry entirely, use setuptools (and uv instead).
+# v1.5 Added files.py for reading and writing files and folders.

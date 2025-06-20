@@ -207,6 +207,65 @@ class Test_is_dunder(unittest.TestCase):
             self.assertFalse(lg.is_dunder(key), key + " Should not be considered dunder.")
 
 
+# %% line_wrap
+class Test_line_wrap(unittest.TestCase):
+    r"""
+    Tests the line_wrap function with the following cases:
+        TBD
+    """
+
+    def setUp(self) -> None:
+        self.text = ("lots of repeated words " * 4).strip()
+        self.wrap = 40
+        self.min_wrap = 0
+        self.indent = 4
+        self.out = [
+            "lots of repeated words lots of \\",
+            "    repeated words lots of repeated \\",
+            "    words lots of repeated words",
+        ]
+
+    def test_str(self) -> None:
+        out = lg.line_wrap(self.text, self.wrap, self.min_wrap, self.indent)
+        self.assertEqual(out, "\n".join(self.out))
+
+    def test_list(self) -> None:
+        out = lg.line_wrap([self.text], self.wrap, self.min_wrap, self.indent)
+        self.assertEqual(out, self.out)
+
+    def test_list2(self) -> None:
+        out = lg.line_wrap(3 * ["aaaaaaaaaa bbbbbbbbbb cccccccccc"], wrap=25, min_wrap=15, indent=2)
+        self.assertEqual(out, 3 * ["aaaaaaaaaa bbbbbbbbbb \\", "  cccccccccc"])
+
+    def test_min_wrap(self) -> None:
+        out = lg.line_wrap("aaaaaaaaaaaaaaaaaaaa bbbbbbbbbb", 25, 18, 0)
+        self.assertEqual(out, "aaaaaaaaaaaaaaaaaaaa \\\nbbbbbbbbbb")
+
+    def test_min_wrap2(self) -> None:
+        with self.assertRaises(ValueError) as context:
+            lg.line_wrap("aaaaaaaaaaaaaaaaaaaa bbbbbbbbbb", 25, 22, 0)
+        self.assertEqual(str(context.exception), 'The specified min_wrap:wrap of "22:25" was too small.')
+
+
+# %% list_python_files
+class Test_list_python_files(unittest.TestCase):
+    r"""
+    Tests the list_python_files function with the following cases:
+        TBD
+    """
+
+    def setUp(self) -> None:
+        self.folder = lg.get_root_dir()
+        self.expected = tuple(
+            self.folder / x for x in ("cli.py", "enums.py", "files.py", "logs.py", "paths.py", "utils.py", "version.py")
+        )
+
+    def test_nominal(self) -> None:
+        files = lg.list_python_files(self.folder)
+        for file, exp in zip(sorted(files), self.expected):
+            self.assertEqual(file, exp)
+
+
 # %% get_root_dir
 class Test_get_root_dir(unittest.TestCase):
     r"""

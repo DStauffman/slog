@@ -11,12 +11,14 @@ Notes
 from contextlib import contextmanager
 import doctest
 from io import StringIO
+from pathlib import Path
 import sys
-from typing import Any, Callable, Iterator, TextIO, TypeVar
+from typing import Any, Callable, Iterator, overload, TextIO, TypeVar
 import unittest
 
 # %% Constants
 _F = TypeVar("_F", bound=Callable[..., Any])
+_StrOrListStr = TypeVar("_StrOrListStr", str, list[str])
 
 
 # %% Classes
@@ -113,6 +115,117 @@ def is_dunder(name: str) -> bool:
     """
     # Note that this is copied from the enum library, as it is not part of their public API.
     return len(name) > 4 and name[:2] == name[-2:] == "__" and name[2] != "_" and name[-3] != "_"
+
+
+# %% line_wrap
+@overload
+def line_wrap(text: str, wrap: int = 80, min_wrap: int = 0, indent: int = 4, line_cont: str = "\\") -> str: ...
+@overload
+def line_wrap(text: list[str], wrap: int = 80, min_wrap: int = 0, indent: int = 4, line_cont: str = "\\") -> list[str]: ...
+def line_wrap(text: _StrOrListStr, wrap: int = 80, min_wrap: int = 0, indent: int = 4, line_cont: str = "\\") -> _StrOrListStr:
+    r"""
+    Wrap lines of text to the specified length, breaking at any whitespace characters.
+
+    Parameters
+    ----------
+    text : str or list of str
+        Text to be wrapped
+    wrap : int, optional
+        Number of characters to wrap text at, default is 80
+    min_wrap : int, optional
+        Minimum number of characters to wrap at, default is 0
+    indent : int, optional
+        Number of characters to indent the next line with, default is 4
+    line_cont : str, optional
+        Line continuation character, default is "\"
+
+    Returns
+    -------
+    out : str or list of str
+        wrapped form of text
+
+    Examples
+    --------
+    >>> from slog import line_wrap
+    >>> text = ("lots of repeated words " * 4).strip()
+    >>> wrap = 40
+    >>> out = line_wrap(text, wrap)
+    >>> print(out)
+    lots of repeated words lots of \
+        repeated words lots of repeated \
+        words lots of repeated words
+
+    """
+    # check if single str
+    if isinstance(text, str):
+        text_list = [text]
+    else:
+        text_list = text
+    # create the pad for any newline
+    pad = " " * indent
+    # initialize output
+    out: list[str] = []
+    # loop through text lines
+    for this_line in text_list:
+        # determine if too long
+        while len(this_line) > wrap:
+            # find the last whitespace to break on, possibly with a minimum start
+            space_break = this_line.rfind(" ", min_wrap, wrap - 1)
+            if space_break == -1 or space_break <= indent:
+                raise ValueError(f'The specified min_wrap:wrap of "{min_wrap}:{wrap}" was too small.')
+            # add the shorter line
+            out.append(this_line[:space_break] + " " + line_cont)
+            # reduce and repeat
+            this_line = pad + this_line[space_break + 1 :]
+        # add the final shorter line
+        out.append(this_line)
+    if isinstance(text, str):
+        return "\n".join(out)
+    return out
+
+
+# %% Functions - list_python_files
+def list_python_files(folder: Path, recursive: bool = False, include_all: bool = False) -> list[Path]:
+    r"""
+    Returns a list of all non dunder python files in the folder.
+
+    Parameters
+    ----------
+    folder : class pathlib.Path
+        Folder location
+    recursive : bool, optional
+        Whether to search recursively, default is False
+    include_all : bool, optional
+        Whether to include all files, even the __dunder__ ones
+
+    Returns
+    -------
+    files : list
+        All *.py files that don't start with __
+
+    Notes
+    -----
+    #.  Written by David C. Stauffer in March 2020.
+
+    Examples
+    --------
+    >>> from slog import list_python_files, get_root_dir
+    >>> folder = get_root_dir()
+    >>> files = list_python_files(folder)
+
+    """
+    # find all the files that end in .py and are not dunder (__name__) files
+    if not folder.is_dir():
+        return []
+    if include_all:
+        files = list(folder.glob("*.py"))
+    else:
+        files = [file for file in folder.glob("*.py") if not is_dunder(file.stem)]
+    if recursive:
+        dirs = [x for x in folder.glob("*") if x.is_dir()]
+        for this_folder in sorted(dirs):
+            files.extend(list_python_files(this_folder, recursive=recursive, include_all=include_all))
+    return files
 
 
 # %% Functions - capture_output
