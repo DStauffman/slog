@@ -4,6 +4,7 @@ File that acts as a sole-source for version history.
 Notes
 -----
 #.  Written by David C. Stauffer in February 2022.
+
 """
 
 # %% Constants

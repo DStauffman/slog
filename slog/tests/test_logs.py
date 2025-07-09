@@ -4,6 +4,7 @@ Test file for the `logs` module of the "slog" library.
 Notes
 -----
 #.  Written by David C. Stauffer in July 2019.
+
 """
 
 # %% Imports

@@ -5,6 +5,7 @@ Notes
 -----
 #.  Written by David C. Stauffer in March 2015.
 #.  Moved to the slog library in June 2025 to simplify dependencies for only core python.
+
 """
 
 # %% Imports
@@ -68,7 +69,7 @@ def read_text_file(filename: str | Path, encoding: str = "utf-8") -> str:
             text = file.read()
         # return results
         return text
-    except:
+    except Exception:
         # on any exceptions, print a message and re-raise the error
         logger.log(LogLevel.L2, 'Unable to open file "%s" for reading.', filename)
         raise
@@ -116,7 +117,7 @@ def write_text_file(filename: str | Path, text: str, encoding: str = "utf-8", *,
         with open(filename, mode, encoding=encoding) as file:
             # write file
             file.write(text)
-    except:
+    except Exception:
         # on any exceptions, print a message and re-raise the error
         logger.log(LogLevel.L2, 'Unable to open file "%s" for writing.', filename)
         raise
@@ -164,7 +165,7 @@ def make_dir(folder: str | Path) -> None:
     try:
         folder.mkdir(parents=True)
         logger.log(LogLevel.L1, 'Created directory: "%s"', folder)
-    except:  # pragma: no cover  # pylint: disable=try-except-raise
+    except Exception:  # pragma: no cover  # pylint: disable=try-except-raise
         # re-raise last exception, could try to handle differently in the future
         raise  # pragma: no cover
 

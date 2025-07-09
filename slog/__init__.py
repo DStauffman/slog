@@ -1,6 +1,27 @@
 r"""
 The "slog" library extends the built-in Python logging module with some convenient functions and custom log levels.
 
+Add 10-ish custom levels that give more degradation beween WARNING, INFO and DEBUG.
+
+    50 (CRITICAL, FATAL)
+    40 (ERROR)
+L0  35
+L1  30 (WARNING, WARN)
+L2  28
+L3  26
+L4  24
+L5  20 (INFO)
+L6  18
+L7  16
+L8  14
+L9  12
+L10 10 (DEBUG)
+L11  9
+L12  8
+L20  0  (NOTSET)
+
+Also adds generic read/write, and mkdir commands, along with string manipulation, enum, and logging support.
+
 """
 
 # %% Imports

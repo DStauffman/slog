@@ -6,6 +6,7 @@ Notes
 #.  Written by David C. Stauffer in March 2015.
 #.  Moved out of utils and into paths.py file in February 2019 by David C. Stauffer.
 #.  Adapted into slog library by David C. Stauffer in February 2022.
+
 """
 
 # %% Imports

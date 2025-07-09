@@ -5,6 +5,7 @@ Notes
 -----
 #.  Written by David C. Stauffer in March 2015.
 #.  Copied to the slog library in February 2022 to avoid circular dependencies.
+
 """
 
 # %% Imports

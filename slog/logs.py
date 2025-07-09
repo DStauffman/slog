@@ -4,6 +4,7 @@ Logging utilities that make it easier to simultaneously log to a file and standa
 Notes
 -----
 #.  Split out of utils by David C. Stauffer in July 2019.
+
 """
 
 # %% Imports

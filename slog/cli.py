@@ -5,6 +5,7 @@ Notes
 -----
 #.  Written by David C. Stauffer in March 2020.
 #.  Adapted to the slog library by David C. Stauffer in February 2022.
+
 """
 
 # %% Imports
@@ -30,12 +31,12 @@ def main() -> int:
     if command in {"help", "--help", "-h"}:
         try:
             return_code = print_help()
-        except:
+        except Exception:  # pylint: disable=broad-exception-caught
             return_code = ReturnCodes.bad_help_file
     elif command in {"version", "--version", "-v"}:
         try:
             return_code = print_version()
-        except:
+        except Exception:  # pylint: disable=broad-exception-caught
             return_code = ReturnCodes.clean
     elif command == "tests":
         # run tests using pytest
@@ -78,7 +79,8 @@ def print_help(help_file: Path | None = None) -> int:
 
 # %% Functions - print_version
 def print_version() -> int:
-    r"""Prints the version of the library.
+    r"""
+    Prints the version of the library.
 
     Returns
     -------
@@ -94,7 +96,7 @@ def print_version() -> int:
     try:
         version = ".".join(str(x) for x in version_info)
         return_code = ReturnCodes.clean
-    except:
+    except Exception:  # pylint: disable=broad-exception-caught
         version = "unknown"
         return_code = ReturnCodes.bad_version
     print(version)

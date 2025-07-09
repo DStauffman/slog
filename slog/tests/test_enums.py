@@ -4,6 +4,7 @@ Test file for the `enums` module of the "slog" library.
 Notes
 -----
 #.  Written by David C. Stauffer in July 2015.
+
 """
 
 # %% Imports
@@ -22,9 +23,7 @@ class _Example_Enum(lg.IntEnumPlus):
 
 # %% IntEnumPlus
 class Test_IntEnumPlus(unittest.TestCase):
-    r"""
-    Tests the IntEnumPlus class by making a enum instance and testing all the methods.
-    """
+    r"""Tests the IntEnumPlus class by making a enum instance and testing all the methods."""
 
     def test_printing_instance_str(self) -> None:
         with lg.capture_output() as ctx:

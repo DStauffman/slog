@@ -1,5 +1,9 @@
 # Change Log
 
+## June 2025 (by David C. Stauffer)
+
+* Added files.py for reading and writing text files and folders
+
 ## February 2025 (by David C. Stauffer
 
 * Drop explicit ClassVar typing for enums

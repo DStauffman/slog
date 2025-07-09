@@ -5,6 +5,7 @@ Notes
 -----
 #.  Written by David C. Stauffer in March 2020.
 #.  Adapted to the slog library by David C. Stauffer in February 2022.
+
 """
 
 # %% Imports
