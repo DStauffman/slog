@@ -210,9 +210,6 @@ ignore = [
     "PT009",  # Use assert instead of unittest assertEqual
     "PT018",
     "PT027",
-    "PTH100",  # Fix this one!
-    "PTH118",  # Fix this one!
-    "PTH123",  # Fix this one!
     "PYI032",
     "PYI041",
     "PYI050",

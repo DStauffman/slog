@@ -64,7 +64,7 @@ def read_text_file(filename: str | Path, encoding: str = "utf-8") -> str:
     """
     try:
         # open file for reading
-        with open(filename, "rt", encoding=encoding) as file:
+        with open(filename, "rt", encoding=encoding) as file:  # noqa: PTH123
             # read file
             text = file.read()
         # return results
@@ -114,7 +114,7 @@ def write_text_file(filename: str | Path, text: str, encoding: str = "utf-8", *,
     mode = "at" if append else "wt"
     try:
         # open file for writing
-        with open(filename, mode, encoding=encoding) as file:
+        with open(filename, mode, encoding=encoding) as file:  # noqa: PTH123
             # write file
             file.write(text)
     except Exception:

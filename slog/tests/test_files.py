@@ -38,7 +38,7 @@ class Test_read_text_file(unittest.TestCase):
         cls.contents = "Hello, World!\n"
         cls.filepath = cls.folder / "temp_file.txt"
         cls.badpath = pathlib.Path(r"AA:\non_existent_path\bad_file.txt")
-        with open(cls.filepath, "wt") as file:
+        with cls.filepath.open("wt") as file:
             file.write(cls.contents)
 
     def test_reading(self) -> None:
@@ -84,13 +84,13 @@ class Test_write_text_file(unittest.TestCase):
 
     def test_writing(self) -> None:
         lg.write_text_file(self.filepath, self.contents)
-        with open(self.filepath, "rt") as file:
+        with self.filepath.open("rt") as file:
             text = file.read()
         self.assertEqual(text, self.contents)
 
     def test_str(self) -> None:
         lg.write_text_file(str(self.filepath), self.contents)
-        with open(str(self.filepath), "rt") as file:
+        with self.filepath.open("rt") as file:
             text = file.read()
         self.assertEqual(text, self.contents)
 
@@ -106,15 +106,15 @@ class Test_write_text_file(unittest.TestCase):
 
     def test_append_file(self) -> None:
         lg.write_text_file(self.filepath, self.contents)
-        with open(self.filepath, "rt") as file:
+        with self.filepath.open("rt") as file:
             text = file.read()
         self.assertEqual(text, self.contents)
         lg.write_text_file(self.filepath, "New Contents\n")
-        with open(self.filepath, "rt") as file:
+        with self.filepath.open("rt") as file:
             text = file.read()
         self.assertEqual(text, "New Contents\n")
         lg.write_text_file(self.filepath, "Additional Notes.\n\n", append=True)
-        with open(self.filepath, "rt") as file:
+        with self.filepath.open("rt") as file:
             text = file.read()
         self.assertEqual(text, "New Contents\nAdditional Notes.\n\n")
 
