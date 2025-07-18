@@ -124,7 +124,7 @@ def write_text_file(filename: str | Path, text: str, encoding: str = "utf-8", *,
 
 
 # %% Functions - make_dir
-def make_dir(folder: str | Path) -> None:
+def make_dir(folder: str | Path | None) -> None:
     r"""
     Instantiates the directory if it doesn't exist.
 
@@ -153,6 +153,9 @@ def make_dir(folder: str | Path) -> None:
     >>> make_dir(r"C:\Temp\test_folder")  # doctest: +SKIP
 
     """
+    # allow None to pass through
+    if folder is None:
+        return
     # convert older string API to paths
     if isinstance(folder, str):
         # check for an empty string and exit
@@ -171,7 +174,7 @@ def make_dir(folder: str | Path) -> None:
 
 
 # %% Functions - wipe_dir
-def wipe_dir(folder: str | Path, recursive: bool = False) -> None:
+def wipe_dir(folder: str | Path | None, recursive: bool = False) -> None:
     r"""
     Clear the contents for existing folders or instantiates the directory if it doesn't exist.
 
@@ -202,6 +205,9 @@ def wipe_dir(folder: str | Path, recursive: bool = False) -> None:
     >>> wipe_dir(r"C:\Temp\test_folder")  # doctest: +SKIP
 
     """
+    # allow None to pass through
+    if folder is None:
+        return
     # convert older string API to paths
     if isinstance(folder, str):
         # check for an empty string and exit
