@@ -44,12 +44,10 @@ slog = "slog.cli:main"
 [tool.setuptools.package-data]
 slog = ["CHANGELOG.md", "LICENSE.txt", "pyproject.toml", "README.rst", "setup.cfg"]
 
-[tool.bandit]
-skips = ["B101"]
-
 [tool.black]
 line-length = 128
 target_version = ["py313"]
+include = '\.pyi?$'
 
 [tool.coverage.run]
 branch = true
