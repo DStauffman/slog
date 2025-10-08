@@ -9,12 +9,13 @@ Notes
 """
 
 # %% Imports
+from collections.abc import Callable, Iterator
 from contextlib import contextmanager
 import doctest
 from io import StringIO
 from pathlib import Path
 import sys
-from typing import Any, Callable, Iterator, overload, TextIO, TypeVar
+from typing import Any, overload, TextIO, TypeVar
 import unittest
 
 # %% Constants
@@ -26,7 +27,7 @@ _StrOrListStr = TypeVar("_StrOrListStr", str, list[str])
 class CaptureOutputResult:
     r"""Class used to keep track of the standard output and error streams to assist the capture_output function."""
 
-    def __init__(self, stdout: StringIO | TextIO | None = None, stderr: StringIO | TextIO | None = None):
+    def __init__(self, stdout: StringIO | TextIO | None = None, stderr: StringIO | TextIO | None = None) -> None:
         self.stdout = stdout
         self.stderr = stderr
 
@@ -58,7 +59,7 @@ class CaptureOutputResult:
         if isinstance(std, TextIO):
             return "\n".join(std.readlines())
 
-        raise Exception(f"Unknown type {type(std)}")  # pylint: disable=broad-exception-raised
+        raise Exception(f"Unknown type {type(std)}")  # pylint: disable=broad-exception-raised  # noqa: TRY002
 
 
 # %% Decorators - consecutive
@@ -115,7 +116,7 @@ def is_dunder(name: str) -> bool:
 
     """
     # Note that this is copied from the enum library, as it is not part of their public API.
-    return len(name) > 4 and name[:2] == name[-2:] == "__" and name[2] != "_" and name[-3] != "_"
+    return len(name) > 4 and name[:2] == name[-2:] == "__" and name[2] != "_" and name[-3] != "_"  # noqa: PLR2004
 
 
 # %% line_wrap
@@ -158,10 +159,7 @@ def line_wrap(text: _StrOrListStr, wrap: int = 80, min_wrap: int = 0, indent: in
 
     """
     # check if single str
-    if isinstance(text, str):
-        text_list = [text]
-    else:
-        text_list = text
+    text_list = [text] if isinstance(text, str) else text
     # create the pad for any newline
     pad = " " * indent
     # initialize output
@@ -177,7 +175,7 @@ def line_wrap(text: _StrOrListStr, wrap: int = 80, min_wrap: int = 0, indent: in
             # add the shorter line
             out.append(this_line[:space_break] + " " + line_cont)
             # reduce and repeat
-            this_line = pad + this_line[space_break + 1 :]
+            this_line = pad + this_line[space_break + 1 :]  # noqa: PLW2901
         # add the final shorter line
         out.append(this_line)
     if isinstance(text, str):
@@ -218,10 +216,7 @@ def list_python_files(folder: Path, recursive: bool = False, include_all: bool =
     # find all the files that end in .py and are not dunder (__name__) files
     if not folder.is_dir():
         return []
-    if include_all:
-        files = list(folder.glob("*.py"))
-    else:
-        files = [file for file in folder.glob("*.py") if not is_dunder(file.stem)]
+    files = list(folder.glob("*.py")) if include_all else [file for file in folder.glob("*.py") if not is_dunder(file.stem)]  # fmt: skip
     if recursive:
         dirs = [x for x in folder.glob("*") if x.is_dir()]
         for this_folder in sorted(dirs):

@@ -77,7 +77,7 @@ class Test_IntEnumPlus(unittest.TestCase):
 
     def test_bad_attribute(self) -> None:
         with self.assertRaises(AttributeError):
-            _Example_Enum.non_existant_field
+            _Example_Enum.non_existant_field  # noqa: B018
 
     def test_bad_uniqueness(self) -> None:
         with self.assertRaises(ValueError):

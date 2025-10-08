@@ -28,10 +28,10 @@ class _EnumMetaPlus(EnumMeta):
     """
 
     def __repr__(cls) -> str:
-        return "\n".join((repr(field) for field in cls))  # type: ignore[var-annotated]  # pylint: disable=not-an-iterable
+        return "\n".join(repr(field) for field in cls)  # type: ignore[var-annotated]  # pylint: disable=not-an-iterable
 
     def __str__(cls) -> str:
-        return "\n".join((str(field) for field in cls))  # type: ignore[var-annotated]  # pylint: disable=not-an-iterable
+        return "\n".join(str(field) for field in cls)  # type: ignore[var-annotated]  # pylint: disable=not-an-iterable
 
     def __getattr__(cls, name: str) -> int:
         r"""Return the enum member matching `name`."""
@@ -46,13 +46,11 @@ class _EnumMetaPlus(EnumMeta):
     def list_of_names(cls) -> list[str]:
         r"""Return a list of all the names within the enumerator."""
         # look for class.name: pattern, ignore class, return names only
-        names = list(cls.__members__)
-        return names
+        return list(cls.__members__)
 
     def list_of_values(cls) -> list[int]:
         r"""Return a list of all the values within the enumerator."""
-        values = list(cls.__members__.values())  # type: ignore[var-annotated]
-        return values
+        return list(cls.__members__.values())
 
     @property
     def num_values(cls) -> int:

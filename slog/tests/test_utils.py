@@ -9,13 +9,15 @@ Notes
 """
 
 # %% Imports
+from collections.abc import Iterable, Iterator
+import contextlib
 import inspect
 from io import StringIO
 import os
 import pathlib
 import sys
 from types import TracebackType
-from typing import AnyStr, Iterable, Iterator, TextIO, Type
+from typing import AnyStr, TextIO
 import unittest
 
 import slog as lg
@@ -99,7 +101,7 @@ class _ExampleTextIOClass(TextIO):
         pass
 
     def __exit__(  # type: ignore[override]
-        self, t: Type[BaseException] | None, value: BaseException | None, traceback: TracebackType | None
+        self, t: type[BaseException] | None, value: BaseException | None, traceback: TracebackType | None
     ) -> bool | None:
         pass
 
@@ -118,14 +120,10 @@ class Test_CaptureOutputResult(unittest.TestCase):
         out.write("Works")
         err.write("Also works")
         ctx.close()
-        try:
+        with contextlib.suppress(ValueError):
             out.write("Fails")
-        except ValueError:
-            pass
-        try:
+        with contextlib.suppress(ValueError):
             err.write("Also fails")
-        except ValueError:
-            pass
 
     def test_get_output(self) -> None:
         out = StringIO()
@@ -169,7 +167,7 @@ class Test_consecutive(unittest.TestCase):
 
     def test_consecutive(self) -> None:
         enum = lg.consecutive(_Example_Consecutive)
-        self.assertTrue(isinstance(enum, lg.enums._EnumMetaPlus))
+        self.assertTrue(isinstance(enum, lg.enums._EnumMetaPlus))  # noqa: SLF001
 
     def test_consecutive_but_not_zero(self) -> None:
         with self.assertRaises(ValueError) as context:
@@ -263,7 +261,7 @@ class Test_list_python_files(unittest.TestCase):
 
     def test_nominal(self) -> None:
         files = lg.list_python_files(self.folder)
-        for file, exp in zip(sorted(files), self.expected):
+        for file, exp in zip(sorted(files), self.expected, strict=True):
             self.assertEqual(file, exp)
 
 
@@ -315,9 +313,8 @@ class Test_capture_output(unittest.TestCase):
         self.assertEqual(error, "Error Raised.")
 
     def test_bad_value(self) -> None:
-        with self.assertRaises(RuntimeError):
-            with lg.capture_output("bad"):
-                print("Lost values")  # pragma: no cover
+        with self.assertRaises(RuntimeError), lg.capture_output("bad"):
+            print("Lost values")  # pragma: no cover
 
 
 # %% Unit test execution

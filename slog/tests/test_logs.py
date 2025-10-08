@@ -56,7 +56,7 @@ class Test_act_deact_logging(unittest.TestCase):
         with self.assertLogs(level="L5") as logs:
             logger = logging.getLogger("Test")
             for i in range(10):
-                logger.log(lg.LogLevel.L5, "Message {}".format(i))
+                logger.log(lg.LogLevel.L5, "Message %i", i)
             lg.flush_logging()
         lines = logs.output
         self.assertEqual(len(lines), 10)

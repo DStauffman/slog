@@ -50,9 +50,8 @@ class Test_read_text_file(unittest.TestCase):
         self.assertEqual(text, self.contents)
 
     def test_bad_reading(self) -> None:
-        with patch("slog.files.logger") as mock_logger:
-            with self.assertRaises((OSError, IOError, FileNotFoundError)):
-                lg.read_text_file(self.badpath)
+        with patch("slog.files.logger") as mock_logger, self.assertRaises((OSError, IOError, FileNotFoundError)):
+            lg.read_text_file(self.badpath)
         mock_logger.log.assert_called_with(
             lg.LogLevel.L2, r'Unable to open file "%s" for reading.', pathlib.Path(r"AA:\non_existent_path\bad_file.txt")
         )
@@ -97,9 +96,8 @@ class Test_write_text_file(unittest.TestCase):
     def test_bad_writing(self) -> None:
         if platform.system() != "Windows":
             return  # pragma: noc windows
-        with patch("slog.files.logger") as mock_logger:
-            with self.assertRaises((OSError, IOError, FileNotFoundError)):
-                lg.write_text_file(self.badpath, self.contents)
+        with patch("slog.files.logger") as mock_logger, self.assertRaises((OSError, IOError, FileNotFoundError)):
+            lg.write_text_file(self.badpath, self.contents)
         mock_logger.log.assert_called_with(
             lg.LogLevel.L2, r'Unable to open file "%s" for writing.', pathlib.Path(r"AA:\non_existent_path\bad_file.txt")
         )
@@ -173,7 +171,7 @@ class Test_make_dir(unittest.TestCase):
 
         try:
             _clean(self)
-        except {PermissionError, OSError}:  # type: ignore[misc]  # pragma: no cover
+        except (PermissionError, OSError):  # pragma: no cover
             # pause to let Windows catch up and close files
             time.sleep(1)
             # retry
@@ -245,7 +243,7 @@ class Test_wipe_dir(unittest.TestCase):
     def test_bad_name_file_ext(self, mock_logger: Mock) -> None:
         pass  # TODO: write this test
 
-    def test_clean_up_recursively(self, mock_logger: Mock) -> None:
+    def test_clean_up_recursively(self, mock_logger: Mock) -> None:  # noqa: ARG002
         lg.wipe_dir(self.subdir)
         lg.write_text_file(self.subfile, self.text)
         with patch("slog.files.logger") as mock_logger2:
@@ -265,7 +263,7 @@ class Test_wipe_dir(unittest.TestCase):
 
         try:
             _clean(self)
-        except {PermissionError, OSError}:  # type: ignore[misc]  # pragma: no cover
+        except (PermissionError, OSError):  # pragma: no cover
             # pause to let Windows catch up and close files
             time.sleep(1)
             # retry

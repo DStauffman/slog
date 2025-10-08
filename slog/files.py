@@ -67,12 +67,12 @@ def read_text_file(filename: str | Path, encoding: str = "utf-8") -> str:
         with open(filename, "rt", encoding=encoding) as file:  # noqa: PTH123
             # read file
             text = file.read()
-        # return results
-        return text
     except Exception:
         # on any exceptions, print a message and re-raise the error
         logger.log(LogLevel.L2, 'Unable to open file "%s" for reading.', filename)
         raise
+    # successful read, so return the resulting text
+    return text
 
 
 # %% Functions - write_text_file
@@ -168,7 +168,7 @@ def make_dir(folder: str | Path | None) -> None:
     try:
         folder.mkdir(parents=True)
         logger.log(LogLevel.L1, 'Created directory: "%s"', folder)
-    except Exception:  # pragma: no cover  # pylint: disable=try-except-raise
+    except Exception:  # pragma: no cover  # pylint: disable=try-except-raise  # noqa: TRY203
         # re-raise last exception, could try to handle differently in the future
         raise  # pragma: no cover
 

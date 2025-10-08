@@ -21,7 +21,7 @@ this_logger = logging.getLogger(__name__)
 
 
 # %% Functions - activate_logging
-def activate_logging(
+def activate_logging(  # noqa: PLR0913
     log_level: int = logging.INFO,
     filename: str | Path | None = None,
     *,
@@ -94,7 +94,7 @@ def activate_logging(
 
     # log the starting conditions
     if bool(log_start):
-        text = f"Logging configured to level {log_level} at {datetime.datetime.now()}"
+        text = f"Logging configured to level {log_level} at {datetime.datetime.now(datetime.timezone.utc)}"
         if isinstance(log_start, str):
             text += " in " + log_start
         this_logger.log(logging.WARNING, text)
@@ -153,7 +153,7 @@ def flush_logging() -> None:
 
 
 # %% Functions - log_multiline
-def log_multiline(logger: logging.Logger, log_level: int, message: Any, *args: Any) -> None:
+def log_multiline(logger: logging.Logger, log_level: int, message: Any, *args: Any) -> None:  # noqa: ANN401
     r"""
     Passes messages through to the logger with options for multiline messages.
 
@@ -181,7 +181,7 @@ def log_multiline(logger: logging.Logger, log_level: int, message: Any, *args: A
 
     """
 
-    def _get_message_list(message: Any) -> list[str]:
+    def _get_message_list(message: Any) -> list[str]:  # noqa: ANN401
         if isinstance(message, list):
             # if message is already a list, then make sure everything is already a string
             if all(isinstance(x, str) for x in message):

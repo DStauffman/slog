@@ -23,26 +23,23 @@ from slog.version import version_info
 def main() -> int:
     r"""Main function called when executed using the command line api."""
     # check for no command option
-    if len(sys.argv) >= 2:
-        command = sys.argv[1].lower()
-    else:
-        command = "help"
+    command = sys.argv[1].lower() if len(sys.argv) >= 2 else "help"  # noqa: PLR2004
     # check for alternative forms of help with the base dcs command
     if command in {"help", "--help", "-h"}:
         try:
             return_code = print_help()
-        except Exception:  # pylint: disable=broad-exception-caught
+        except Exception:  # pylint: disable=broad-exception-caught  # noqa: BLE001
             return_code = ReturnCodes.bad_help_file
     elif command in {"version", "--version", "-v"}:
         try:
             return_code = print_version()
-        except Exception:  # pylint: disable=broad-exception-caught
+        except Exception:  # pylint: disable=broad-exception-caught  # noqa: BLE001
             return_code = ReturnCodes.clean
     elif command == "tests":
         # run tests using pytest
-        import pytest  # pylint: disable=import-outside-toplevel
+        import pytest  # pylint: disable=import-outside-toplevel  # noqa: PLC0415
 
-        exit_code = pytest.main([str(get_root_dir() / "tests"), "-rfEsP"] + sys.argv[2:])
+        exit_code = pytest.main([str(get_root_dir() / "tests"), "-rfEsP"] + sys.argv[2:])  # noqa: RUF005
         return_code = ReturnCodes.clean if exit_code == 0 else ReturnCodes.test_failures
     else:
         print(f'Unknown command: "{command}"')
@@ -96,7 +93,7 @@ def print_version() -> int:
     try:
         version = ".".join(str(x) for x in version_info)
         return_code = ReturnCodes.clean
-    except Exception:  # pylint: disable=broad-exception-caught
+    except Exception:  # pylint: disable=broad-exception-caught  # noqa: BLE001
         version = "unknown"
         return_code = ReturnCodes.bad_version
     print(version)
