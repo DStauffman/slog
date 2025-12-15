@@ -45,8 +45,8 @@ class _ExampleTextIOClass(TextIO):
     def __init__(self) -> None:
         self._text: list[str] = []
 
-    def write(self, text: str) -> int:
-        self._text.append(text)
+    def write(self, text: AnyStr) -> int:
+        self._text.append(text)  # type: ignore[arg-type]
         return 0
 
     def close(self) -> None:
