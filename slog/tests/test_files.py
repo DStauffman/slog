@@ -171,7 +171,8 @@ class Test_make_dir(unittest.TestCase):
 
         try:
             _clean(self)
-        except (PermissionError, OSError):  # pragma: no cover
+        # Note that black likes to mess up this line, but can't until Python v3.14 everywhere
+        except (PermissionError, OSError):  # fmt: skip  # pragma: no cover
             # pause to let Windows catch up and close files
             time.sleep(1)
             # retry
@@ -263,7 +264,8 @@ class Test_wipe_dir(unittest.TestCase):
 
         try:
             _clean(self)
-        except (PermissionError, OSError):  # pragma: no cover
+        # Note that black likes to mess up this line, but can't until Python v3.14 everywhere
+        except (PermissionError, OSError):  # fmt: skip  # pragma: no cover
             # pause to let Windows catch up and close files
             time.sleep(1)
             # retry
