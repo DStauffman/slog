@@ -8,17 +8,14 @@ Notes
 """
 
 # %% Imports
+import importlib.util
 import logging
 import unittest
 
 import slog as lg
 
-try:
+if (HAVE_NUMPY := importlib.util.find_spec("numpy")) is not None:
     import numpy as np
-except ModuleNotFoundError:
-    HAVE_NUMPY = False
-else:
-    HAVE_NUMPY = True
 
 
 # %% activate_logging, deactivate_logging and flush_logging

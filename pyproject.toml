@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "slog"
-version = "1.5.0"
+version = "1.5.1"
 description = "Extends the built-in Python logging module with some convenient functions and custom log levels."
 readme = "README.rst"
 dependencies = []
-requires-python = ">=3.10,<4.0"
+requires-python = ">=3.11,<4.0"
 authors = [
   {name = "David C. Stauffer", email = "dstauffman@yahoo.com"},
 ]
@@ -21,11 +21,11 @@ classifiers = [
     "Topic :: Software Development",
     "Natural Language :: English",
     "Programming Language :: Python :: 3",
-    "Programming Langauge :: Python :: 3.10",
     "Programming Langauge :: Python :: 3.11",
     "Programming Langauge :: Python :: 3.12",
     "Programming Langauge :: Python :: 3.13",
     "Programming Langauge :: Python :: 3.14",
+    "Programming Langauge :: Python :: 3.15",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Typing :: Typed",
 ]
@@ -91,7 +91,7 @@ directory = "coverage_html_report"
 output = "coverage_html_report/coverage.xml"
 
 [tool.isort]
-py_version = 313
+py_version = 314
 profile = "black"
 line_length = 128
 combine_as_imports = true

@@ -55,52 +55,52 @@ class _ExampleTextIOClass(TextIO):
     def readlines(self, hint: int = 0) -> list[str]:
         return self._text[hint:]
 
-    def __enter__(self) -> TextIO:  # type: ignore[empty-body]
+    def __enter__(self) -> TextIO:  # type: ignore[empty-body]  # ty: ignore[empty-body]
         pass
 
-    def fileno(self) -> int:  # type: ignore[empty-body]
+    def fileno(self) -> int:  # type: ignore[empty-body]  # ty: ignore[empty-body]
         pass
 
     def flush(self) -> None:
         pass
 
-    def isatty(self) -> bool:  # type: ignore[empty-body]
+    def isatty(self) -> bool:  # type: ignore[empty-body]  # ty: ignore[empty-body]
         pass
 
-    def read(self, n: int = ...) -> AnyStr:  # type: ignore[empty-body, type-var]
+    def read(self, n: int = ...) -> AnyStr:  # type: ignore[empty-body, type-var]  # ty: ignore[empty-body, invalid-parameter-default]
         pass
 
-    def readable(self) -> bool:  # type: ignore[empty-body]
+    def readable(self) -> bool:  # type: ignore[empty-body]  # ty: ignore[empty-body]
         pass
 
-    def readline(self, limit: int = ...) -> AnyStr:  # type: ignore[empty-body, type-var]
+    def readline(self, limit: int = ...) -> AnyStr:  # type: ignore[empty-body, type-var]  # ty: ignore[empty-body, invalid-parameter-default]
         pass
 
-    def seek(self, offset: int, whence: int = ...) -> int:  # type: ignore[empty-body]
+    def seek(self, offset: int, whence: int = ...) -> int:  # type: ignore[empty-body]  # ty: ignore[empty-body, invalid-parameter-default]
         pass
 
-    def seekable(self) -> bool:  # type: ignore[empty-body]
+    def seekable(self) -> bool:  # type: ignore[empty-body]  # ty: ignore[empty-body]
         pass
 
-    def tell(self) -> int:  # type: ignore[empty-body]
+    def tell(self) -> int:  # type: ignore[empty-body]  # ty: ignore[empty-body]
         pass
 
-    def truncate(self, size: int | None = ...) -> int:  # type: ignore[empty-body]
+    def truncate(self, size: int | None = ...) -> int:  # type: ignore[empty-body]  # ty: ignore[empty-body, invalid-parameter-default]
         pass
 
-    def writable(self) -> bool:  # type: ignore[empty-body]
+    def writable(self) -> bool:  # type: ignore[empty-body]  # ty: ignore[empty-body]
         pass
 
     def writelines(self, lines: Iterable[AnyStr]) -> None:
         pass
 
-    def __next__(self) -> AnyStr:  # type: ignore[empty-body, type-var]
+    def __next__(self) -> AnyStr:  # type: ignore[empty-body, type-var]  # ty: ignore[empty-body]
         pass
 
-    def __iter__(self) -> Iterator[AnyStr]:  # type: ignore[empty-body]
+    def __iter__(self) -> Iterator[AnyStr]:  # type: ignore[empty-body]  # ty: ignore[empty-body]
         pass
 
-    def __exit__(  # type: ignore[override]
+    def __exit__(  # type: ignore[override]  # ty: ignore[invalid-method-override]
         self, t: type[BaseException] | None, value: BaseException | None, traceback: TracebackType | None
     ) -> bool | None:
         pass
