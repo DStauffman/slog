@@ -46,7 +46,7 @@ class _ExampleTextIOClass(TextIO):
         self._text: list[str] = []
 
     def write(self, text: AnyStr) -> int:
-        self._text.append(text)  # type: ignore[arg-type]
+        self._text.append(text)  # type: ignore[arg-type]  # ty: ignore[invalid-argument-type]
         return 0
 
     def close(self) -> None:
@@ -171,7 +171,7 @@ class Test_consecutive(unittest.TestCase):
 
     def test_consecutive_but_not_zero(self) -> None:
         with self.assertRaises(ValueError) as context:
-            lg.consecutive(self.enum)
+            lg.consecutive(self.enum)  # ty: ignore[invalid-argument-type]
         self.assertEqual(str(context.exception), "Bad starting value (should be zero): 1")
 
     def test_unique_but_non_consecutive(self) -> None:

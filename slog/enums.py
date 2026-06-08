@@ -38,7 +38,7 @@ class _EnumMetaPlus(EnumMeta):
         if is_dunder(name):
             raise AttributeError(name)
         try:
-            return cls._member_map_[name]  # type: ignore[return-value]
+            return cls._member_map_[name]  # type: ignore[return-value]  # ty: ignore[invalid-return-type]
         except KeyError:
             text = f'"{cls.__name__}" does not have an attribute of "{name}"'
             raise AttributeError(text) from None
@@ -50,7 +50,7 @@ class _EnumMetaPlus(EnumMeta):
 
     def list_of_values(cls) -> list[int]:
         r"""Return a list of all the values within the enumerator."""
-        return list(cls.__members__.values())
+        return list(cls.__members__.values())  # ty: ignore[invalid-return-type]
 
     @property
     def num_values(cls) -> int:
@@ -60,12 +60,12 @@ class _EnumMetaPlus(EnumMeta):
     @property
     def min_value(cls) -> int:
         r"""Return the minimum value of the enumerator."""
-        return min(cls.__members__.values())
+        return min(cls.__members__.values())  # ty: ignore[invalid-return-type]
 
     @property
     def max_value(cls) -> int:
         r"""Return the maximum value of the enumerator."""
-        return max(cls.__members__.values())
+        return max(cls.__members__.values())  # ty: ignore[invalid-return-type]
 
 
 # %% Classes - IntEnumPlus

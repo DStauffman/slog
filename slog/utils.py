@@ -20,7 +20,6 @@ import unittest
 
 # %% Constants
 _F = TypeVar("_F", bound=Callable[..., Any])
-_StrOrListStr = TypeVar("_StrOrListStr", str, list[str])
 
 
 # %% Classes
@@ -67,10 +66,10 @@ def consecutive(enumeration: _F) -> _F:
     r"""Class decorator for enumerations ensuring unique and consecutive member values that start from zero."""
     duplicates = []
     non_consecutive = []
-    last_value = min(enumeration.__members__.values()) - 1  # type: ignore[attr-defined]
+    last_value = min(enumeration.__members__.values()) - 1  # type: ignore[attr-defined]  # ty: ignore[unresolved-attribute]
     if last_value != -1:
         raise ValueError(f"Bad starting value (should be zero): {last_value + 1}")
-    for name, member in enumeration.__members__.items():  # type: ignore[attr-defined]
+    for name, member in enumeration.__members__.items():  # type: ignore[attr-defined]  # ty: ignore[unresolved-attribute]
         if name != member.name:
             duplicates.append((name, member.name))
         if member != last_value + 1:
@@ -78,10 +77,10 @@ def consecutive(enumeration: _F) -> _F:
         last_value = member
     if duplicates:
         alias_details = ", ".join([f"{alias} -> {name}" for (alias, name) in duplicates])
-        raise ValueError(f"Duplicate values found in {enumeration.__name__}: {alias_details}")
+        raise ValueError(f"Duplicate values found in {enumeration.__name__}: {alias_details}")  # fmt: skip  # ty: ignore[unresolved-attribute]
     if non_consecutive:
         alias_details = ", ".join(f"{name}: {int(member)}" for (name, member) in non_consecutive)
-        raise ValueError(f"Non-consecutive values found in {enumeration.__name__}: {alias_details}")
+        raise ValueError(f"Non-consecutive values found in {enumeration.__name__}: {alias_details}")  # fmt: skip  # ty: ignore[unresolved-attribute]
     return enumeration
 
 
@@ -124,7 +123,9 @@ def is_dunder(name: str) -> bool:
 def line_wrap(text: str, wrap: int = 80, min_wrap: int = 0, indent: int = 4, line_cont: str = "\\") -> str: ...
 @overload
 def line_wrap(text: list[str], wrap: int = 80, min_wrap: int = 0, indent: int = 4, line_cont: str = "\\") -> list[str]: ...
-def line_wrap(text: _StrOrListStr, wrap: int = 80, min_wrap: int = 0, indent: int = 4, line_cont: str = "\\") -> _StrOrListStr:
+def line_wrap(
+    text: str | list[str], wrap: int = 80, min_wrap: int = 0, indent: int = 4, line_cont: str = "\\"
+) -> str | list[str]:
     r"""
     Wrap lines of text to the specified length, breaking at any whitespace characters.
 
