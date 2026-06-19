@@ -30,7 +30,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 
-[project.dependency-groups]
+[dependency-groups]
 static = ["black>=25.0", "isort>=5.10", "mypy>=1.5", "pylint>=2.16"]
 test = ["pytest>=7.4", "pytest-cov>=4.0"]
 
@@ -41,6 +41,9 @@ Changelog = "https://github.com/DStauffman/slog/blob/main/CHANGELOG.md"
 
 [project.scripts]
 slog = "slog.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["slog"]
 
 [tool.setuptools.package-data]
 slog = ["CHANGELOG.md", "LICENSE.txt", "pyproject.toml", "README.rst"]
