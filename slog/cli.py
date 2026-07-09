@@ -34,7 +34,7 @@ def main() -> int:
         try:
             return_code = print_version()
         except Exception:  # pylint: disable=broad-exception-caught  # noqa: BLE001
-            return_code = ReturnCodes.clean
+            return_code = ReturnCodes.bad_version
     elif command == "tests":
         # run tests using pytest
         import pytest  # pylint: disable=import-outside-toplevel  # noqa: PLC0415
