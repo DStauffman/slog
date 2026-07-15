@@ -16,6 +16,7 @@ import unittest
 
 from slog.enums import ReturnCodes
 from slog.paths import get_root_dir
+from slog.utils import list_python_files
 from slog.version import version_info
 
 
@@ -35,6 +36,19 @@ def main() -> int:
             return_code = print_version()
         except Exception:  # pylint: disable=broad-exception-caught  # noqa: BLE001
             return_code = ReturnCodes.bad_version
+    elif command == "doctests":
+        # determine if running in verbose mode
+        verbose= "-v" in sys.argv[2:] or "--verbose" in sys.argv[2:]
+        # initialize failure status
+        had_failure = False
+        # loop through and test each file
+        folder = get_root_dir()
+        files = list_python_files(folder, recursive=True)
+        for file in files:
+            failure_count, _ = doctest.testfile(file, report=True, verbose=verbose, module_relative=False)  # type: ignore[arg-type]
+            if failure_count > 0:
+                had_failure = True
+        return_code = ReturnCodes.test_failures if had_failure else ReturnCodes.clean
     elif command == "tests":
         # run tests using pytest
         import pytest  # pylint: disable=import-outside-toplevel  # noqa: PLC0415

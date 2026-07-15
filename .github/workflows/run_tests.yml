@@ -33,19 +33,20 @@ jobs:
       run: |
         uv venv core_only
         source $VENV_ROOT_DIR/core_only/bin/activate
+        uv pip install pytest-cov
         deactivate
 
-    - name: Test core_only with unittest
+    - name: Test core_only with pytest
       if: always()
       run: |
         source $VENV_ROOT_DIR/core_only/bin/activate
-        python -m slog tests -u
+        python -m slog tests
 
     - name: Test docstrings
       if: always()
       run: |
         source $VENV_ROOT_DIR/core_only/bin/activate
-        python -m slog tests -d
+        python -m slog doctests
 
   static:
     runs-on: ubuntu-latest
@@ -71,7 +72,7 @@ jobs:
       run: |
         uv venv static
         source $VENV_ROOT_DIR/static/bin/activate
-        uv pip install black isort mypy pylint pylint-exit pytest-cov ruff ty
+        uv pip install black mypy pylint pylint-exit pytest-cov ruff ty
         deactivate
 
     - name: Mypy static analysis
@@ -91,6 +92,15 @@ jobs:
         python --version
         ruff --version
         ruff check .
+
+    - name: Ruff format
+      working-directory: ${{ env.SLOG_ROOT_DIR }}
+      if: always()
+      run: |
+        source $VENV_ROOT_DIR/static/bin/activate
+        python --version
+        ruff --version
+        ruff format .
 
     - name: Ty static analysis
       working-directory: ${{ env.SLOG_ROOT_DIR }}
@@ -118,14 +128,6 @@ jobs:
         python --version
         black --version
         black . --check --fast
-
-    - name: isort static analysis
-      working-directory: ${{ env.SLOG_ROOT_DIR }}
-      if: always()
-      run: |
-        source $VENV_ROOT_DIR/static/bin/activate
-        isort --version
-        isort . --check-only --diff
 
   full_tests:
     runs-on: ubuntu-latest
@@ -156,18 +158,12 @@ jobs:
 
     - name: Run coverage report
       working-directory: ${{ env.SLOG_ROOT_DIR }}
-      if: always()
-      run: |
-        source $VENV_ROOT_DIR/core_only/bin/activate
-        python -m slog tests --coverage --cov_file $SLOG_ROOT_DIR/.coverage
-
-    - name: Make the coverage reports
-      working-directory: ${{ env.SLOG_ROOT_DIR }}
       run: |
         source $VENV_ROOT_DIR/core_only/bin/activate
         export COVERAGE_FILE=.coverage
         export COVERAGE_RCFILE=$PYPROJEC_TOLM
         coverage --version
+        coverage run slog tests
         coverage html --rcfile $PYPROJECT_TOLM
         coverage xml --rcfile $PYPROJECT_TOLM
         coverage json --rcfile $PYPROJECT_TOLM
