@@ -45,7 +45,7 @@ def main() -> int:
         folder = get_root_dir()
         files = list_python_files(folder, recursive=True)
         for file in files:
-            failure_count, _ = doctest.testfile(file, report=True, verbose=verbose, module_relative=False)  # type: ignore[arg-type]  # ty: ignore[invalid-argument-type]
+            failure_count, _ = doctest.testfile(str(file), report=True, verbose=verbose, module_relative=False)
             if failure_count > 0:
                 had_failure = True
         return_code = ReturnCodes.test_failures if had_failure else ReturnCodes.clean
