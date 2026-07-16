@@ -9,7 +9,10 @@ Notes
 """
 
 # %% Imports
+import contextlib
+import io
 import unittest
+from unittest.mock import patch
 
 import slog as lg
 
@@ -18,10 +21,91 @@ import slog as lg
 class Test_main(unittest.TestCase):
     r"""
     Tests the main function with the following cases:
-        TBD
+        Help (good and bad)
+        Version (good and bad)
+        Doctests (pass and fail)
+        Unit Tests (pass and fail)
     """
 
-    pass  # TODO: write this
+    def test_help(self) -> None:
+        buffer = io.StringIO()
+        with contextlib.redirect_stdout(buffer), patch("sys.argv", ["name.py", "help"]), self.assertRaises(SystemExit) as exc:
+            lg.main()
+        output = buffer.getvalue()
+        buffer.close()
+        self.assertEqual(exc.exception.code, 0)
+        self.assertTrue(output.startswith("####\nslog\n####\n"))
+
+    def test_bad_help(self) -> None:
+        with (
+            patch("slog.cli.print_help", return_value=lg.ReturnCodes.bad_help_file),
+            patch("sys.argv", ["name.py", "--help"]),
+            self.assertRaises(SystemExit) as exc,
+        ):
+            lg.main()
+        self.assertEqual(exc.exception.code, 3)
+
+    def test_version(self) -> None:
+        buffer = io.StringIO()
+        with (
+            contextlib.redirect_stdout(buffer),
+            patch("sys.argv", ["name.py", "version"]),
+            self.assertRaises(SystemExit) as exc,
+        ):
+            lg.main()
+        output = buffer.getvalue()
+        buffer.close()
+        self.assertEqual(exc.exception.code, 0)
+        self.assertIn(".", output)
+
+    def test_bad_version(self) -> None:
+        with (
+            patch("slog.cli.print_version", return_value=lg.ReturnCodes.bad_version),
+            patch("sys.argv", ["name.py", "--version"]),
+            self.assertRaises(SystemExit) as exc,
+        ):
+            lg.main()
+        self.assertEqual(exc.exception.code, 4)
+
+    def test_doctests(self) -> None:
+        with (
+            patch("slog.cli.doctest.testfile", return_value=(0, "")) as mock_tester,
+            patch("sys.argv", ["name.py", "doctests", "-v"]),
+            self.assertRaises(SystemExit) as exc,
+        ):
+            lg.main()
+        self.assertEqual(exc.exception.code, 0)
+        mock_tester.assert_any_call(str(lg.get_root_dir().joinpath("cli.py")), report=True, verbose=True, module_relative=False)  # fmt: skip
+
+    def test_doctest_fails(self) -> None:
+        with (
+            patch("slog.cli.doctest.testfile", return_value=(1, "")) as mock_tester,
+            patch("sys.argv", ["name.py", "doctests"]),
+            self.assertRaises(SystemExit) as exc,
+        ):
+            lg.main()
+        self.assertEqual(exc.exception.code, 5)
+        mock_tester.assert_any_call(str(lg.get_root_dir().joinpath("cli.py")), report=True, verbose=False, module_relative=False)  # fmt: skip
+
+    def test_unittests(self) -> None:
+        with (
+            patch("pytest.main", return_value=0) as mock_tester,
+            patch("sys.argv", ["name.py", "tests"]),
+            self.assertRaises(SystemExit) as exc,
+        ):
+            lg.main()
+        self.assertEqual(exc.exception.code, 0)
+        mock_tester.assert_called_with([str(lg.get_root_dir().joinpath("tests")), "-rfEsP"])
+
+    def test_bad_unittests(self) -> None:
+        with (
+            patch("pytest.main", return_value=-1) as mock_tester,
+            patch("sys.argv", ["name.py", "tests", "--extra"]),
+            self.assertRaises(SystemExit) as exc,
+        ):
+            lg.main()
+        self.assertEqual(exc.exception.code, 5)
+        mock_tester.assert_called_with([str(lg.get_root_dir().joinpath("tests")), "-rfEsP", "--extra"])
 
 
 # %% print_help

@@ -72,7 +72,7 @@ jobs:
       run: |
         uv venv static
         source $VENV_ROOT_DIR/static/bin/activate
-        uv pip install black mypy pylint pylint-exit pytest-cov ruff ty
+        uv pip install black mypy numpy pylint pylint-exit pytest-cov ruff ty
         deactivate
 
     - name: Mypy static analysis
