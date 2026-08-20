@@ -128,6 +128,7 @@ ignore = [
     "S101",  # Use of assert
     "T201",  # `print` found
     "COM812",  # Add trailing comma
+	"CPY001",  # Missing copyright notice at top of file
     "EM101",  # exception must not use string literal
     "EM102",  # exception must not use f-string
     "FBT001",  # boolean type in positional argument
