@@ -8,7 +8,7 @@ Notes
 """
 
 # %% Imports
-import datetime
+import datetime as dt
 import doctest
 import logging
 from pathlib import Path
@@ -94,7 +94,7 @@ def activate_logging(  # noqa: PLR0913
 
     # log the starting conditions
     if bool(log_start):
-        text = f"Logging configured to level {log_level} at {datetime.datetime.now(datetime.UTC)}"
+        text = f"Logging configured to level {log_level} at {dt.datetime.now(dt.UTC)}"
         if isinstance(log_start, str):
             text += " in " + log_start
         this_logger.log(logging.WARNING, text)

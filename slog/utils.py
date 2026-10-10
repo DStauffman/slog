@@ -9,7 +9,7 @@ Notes
 """
 
 # %% Imports
-from collections.abc import Callable, Iterator
+from collections.abc import Callable, Generator
 from contextlib import contextmanager
 import doctest
 from io import StringIO
@@ -227,7 +227,7 @@ def list_python_files(folder: Path, recursive: bool = False, include_all: bool =
 
 # %% Functions - capture_output
 @contextmanager
-def capture_output(mode: str = "out") -> Iterator[CaptureOutputResult]:
+def capture_output(mode: str = "out") -> Generator[CaptureOutputResult]:
     r"""
     Capture the stdout and stderr streams instead of displaying to the screen.
 
