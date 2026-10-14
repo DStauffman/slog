@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "slog"
-version = "1.5.2"
+version = "1.6.0"
 description = "Extends the built-in Python logging module with some convenient functions and custom log levels."
 readme = "README.rst"
 dependencies = []
-requires-python = ">=3.11,<4.0"
+requires-python = ">=3.12,<4.0"
 authors = [
   {name = "David C. Stauffer", email = "dstauffman@yahoo.com"},
 ]
@@ -21,7 +21,6 @@ classifiers = [
     "Topic :: Software Development",
     "Natural Language :: English",
     "Programming Language :: Python :: 3",
-    "Programming Langauge :: Python :: 3.11",
     "Programming Langauge :: Python :: 3.12",
     "Programming Langauge :: Python :: 3.13",
     "Programming Langauge :: Python :: 3.14",
@@ -114,7 +113,7 @@ ignore-paths = "^(.*[/\\\\]|)tests[/\\\\]test_.*$"
 include = ["pyproject.toml", "slog/**/*.py"]
 line-length = 128
 indent-width = 4
-target-version = "py311"
+target-version = "py314"
 
 [tool.ruff.lint]
 select = ["ALL"]
@@ -124,11 +123,11 @@ ignore = [
     "D203",  # one blank line required before class docstring
     "D212",  # multiline docstring summary should start at the first line
     "D401",  # first line of docstring should be in imperative mood
-    "E501",  # line too long, (use black to manage this)
+    "E501",  # line too long, (use black/ruff format to manage this)
     "S101",  # Use of assert
     "T201",  # `print` found
     "COM812",  # Add trailing comma
-	"CPY001",  # Missing copyright notice at top of file
+    "CPY001",  # Missing copyright notice at top of file
     "EM101",  # exception must not use string literal
     "EM102",  # exception must not use f-string
     "FBT001",  # boolean type in positional argument

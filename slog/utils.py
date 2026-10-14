@@ -15,11 +15,8 @@ import doctest
 from io import StringIO
 from pathlib import Path
 import sys
-from typing import Any, overload, TextIO, TypeVar
+from typing import Any, overload, TextIO
 import unittest
-
-# %% Constants
-_F = TypeVar("_F", bound=Callable[..., Any])
 
 
 # %% Classes
@@ -62,7 +59,7 @@ class CaptureOutputResult:
 
 
 # %% Decorators - consecutive
-def consecutive(enumeration: _F) -> _F:
+def consecutive[F: Callable[..., Any]](enumeration: F) -> F:
     r"""Class decorator for enumerations ensuring unique and consecutive member values that start from zero."""
     duplicates = []
     non_consecutive = []

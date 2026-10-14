@@ -8,7 +8,7 @@ Notes
 """
 
 # %% Constants
-version_info = (1, 5, 2)
+version_info = (1, 6, 0)
 
 # Below is data about the minor release history for potential use in deprecating older support.
 # For inspiration, see: https://numpy.org/neps/nep-0029-deprecation_policy.html
@@ -20,6 +20,7 @@ Jun 24, 2024: slog 1.2
 Feb 04, 2025: slog 1.3
 Apr 16, 2025: slog 1.4
 Jun 20, 2025: slog 1.5
+Oct 13, 2026: slog 1.6
 """
 
 # Historical notes:
@@ -30,3 +31,4 @@ Jun 20, 2025: slog 1.5
 # v1.3 Support Python v3.13, drop explicit ClassVar decorations.
 # v1.4 Ditch poetry entirely, use setuptools (and uv instead).
 # v1.5 Added files.py for reading and writing files and folders.
+# v1.6 Drop python v3.11, use newer typing features, try lazy imports.
