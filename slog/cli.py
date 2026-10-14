@@ -9,6 +9,8 @@ Notes
 """
 
 # %% Imports
+from __future__ import annotations
+
 import doctest
 import sys
 from typing import TYPE_CHECKING
