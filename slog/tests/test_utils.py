@@ -9,18 +9,20 @@ Notes
 """
 
 # %% Imports
-from collections.abc import Iterable, Iterator
 import contextlib
 import inspect
 from io import StringIO
 import os
 import pathlib
 import sys
-from types import TracebackType
-from typing import AnyStr, TextIO
+from typing import AnyStr, TextIO, TYPE_CHECKING
 import unittest
 
 import slog as lg
+
+if TYPE_CHECKING:
+    from collections.abc import Iterable, Iterator
+    from types import TracebackType
 
 
 class _Example_Consecutive(lg.IntEnumPlus):

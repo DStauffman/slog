@@ -10,14 +10,17 @@ Notes
 
 # %% Imports
 import doctest
-from pathlib import Path
 import sys
+from typing import TYPE_CHECKING
 import unittest
 
 from slog.enums import ReturnCodes
 from slog.paths import get_root_dir
 from slog.utils import list_python_files
 from slog.version import version_info
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 # %% Functions - main

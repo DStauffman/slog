@@ -13,10 +13,12 @@ from collections.abc import Callable, Generator
 from contextlib import contextmanager
 import doctest
 from io import StringIO
-from pathlib import Path
 import sys
-from typing import Any, overload, TextIO
+from typing import Any, overload, TextIO, TYPE_CHECKING
 import unittest
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 # %% Classes
