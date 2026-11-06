@@ -174,4 +174,4 @@ respect-type-ignore-comments = false
 include = ["**/tests/test_*.py"]
 
 [tool.ty.overrides.rules]
-unresolved-import = "ignore"
+import-not-found = "ignore"

@@ -50,7 +50,7 @@ class _EnumMetaPlus(EnumMeta):
 
     def list_of_values(cls) -> list[int]:
         r"""Return a list of all the values within the enumerator."""
-        return list(cls.__members__.values())  # ty: ignore[invalid-return-type]
+        return list(cls.__members__.values())  # ty: ignore[invalid-argument-type]
 
     @property
     def num_values(cls) -> int:
@@ -60,12 +60,12 @@ class _EnumMetaPlus(EnumMeta):
     @property
     def min_value(cls) -> int:
         r"""Return the minimum value of the enumerator."""
-        return min(cls.__members__.values())  # ty: ignore[invalid-return-type]
+        return min(cls.__members__.values())  # ty: ignore[invalid-argument-type]
 
     @property
     def max_value(cls) -> int:
         r"""Return the maximum value of the enumerator."""
-        return max(cls.__members__.values())  # ty: ignore[invalid-return-type]
+        return max(cls.__members__.values())  # ty: ignore[invalid-argument-type]
 
 
 # %% Classes - IntEnumPlus
