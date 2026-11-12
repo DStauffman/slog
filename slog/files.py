@@ -64,7 +64,7 @@ def read_text_file(filename: str | Path, encoding: str = "utf-8") -> str:
     """
     try:
         # open file for reading
-        with open(filename, "rt", encoding=encoding) as file:  # noqa: PTH123
+        with open(filename, "rt", encoding=encoding) as file:  # noqa: PTH123, UP015
             # read file
             text = file.read()
     except Exception:

@@ -140,7 +140,6 @@ ignore = [
     "TD002",  # Missing author in TODO
     "TD003",  # Missing issue link in TODO
     "TRY003",  # Avoid specifying long messages outside exceptions
-    "UP015",  # Unnecessary mode argument
 ]
 
 [tool.ruff.lint.isort]
