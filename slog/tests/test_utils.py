@@ -59,52 +59,52 @@ class _ExampleTextIOClass(TextIO):
     def readlines(self, hint: int = 0) -> list[str]:
         return self._text[hint:]
 
-    def __enter__(self) -> TextIO:  # type: ignore[empty-body]  # ty: ignore[empty-body]
+    def __enter__(self) -> TextIO:  # type: ignore[empty-body]  # ty: ignore[invalid-implicit-return-in-function-with-stub-body]
         pass
 
-    def fileno(self) -> int:  # type: ignore[empty-body]  # ty: ignore[empty-body]
+    def fileno(self) -> int:  # type: ignore[empty-body]  # ty: ignore[invalid-implicit-return-in-function-with-stub-body]
         pass
 
     def flush(self) -> None:
         pass
 
-    def isatty(self) -> bool:  # type: ignore[empty-body]  # ty: ignore[empty-body]
+    def isatty(self) -> bool:  # type: ignore[empty-body]  # ty: ignore[invalid-implicit-return-in-function-with-stub-body]
         pass
 
-    def read(self, n: int = ...) -> AnyStr:  # type: ignore[empty-body, type-var]  # ty: ignore[empty-body, invalid-parameter-default]
+    def read(self, n: int = ...) -> AnyStr:  # type: ignore[empty-body, type-var]  # ty: ignore[invalid-implicit-return-in-function-with-stub-body, invalid-parameter-default]
         pass
 
-    def readable(self) -> bool:  # type: ignore[empty-body]  # ty: ignore[empty-body]
+    def readable(self) -> bool:  # type: ignore[empty-body]  # ty: ignore[invalid-implicit-return-in-function-with-stub-body]
         pass
 
-    def readline(self, limit: int = ...) -> AnyStr:  # type: ignore[empty-body, type-var]  # ty: ignore[empty-body, invalid-parameter-default]
+    def readline(self, limit: int = ...) -> AnyStr:  # type: ignore[empty-body, type-var]  # ty: ignore[invalid-implicit-return-in-function-with-stub-body, invalid-parameter-default]
         pass
 
-    def seek(self, offset: int, whence: int = ...) -> int:  # type: ignore[empty-body]  # ty: ignore[empty-body, invalid-parameter-default]
+    def seek(self, offset: int, whence: int = ...) -> int:  # type: ignore[empty-body]  # ty: ignore[invalid-implicit-return-in-function-with-stub-body, invalid-parameter-default]
         pass
 
-    def seekable(self) -> bool:  # type: ignore[empty-body]  # ty: ignore[empty-body]
+    def seekable(self) -> bool:  # type: ignore[empty-body]  # ty: ignore[invalid-implicit-return-in-function-with-stub-body]
         pass
 
-    def tell(self) -> int:  # type: ignore[empty-body]  # ty: ignore[empty-body]
+    def tell(self) -> int:  # type: ignore[empty-body]  # ty: ignore[invalid-implicit-return-in-function-with-stub-body]
         pass
 
-    def truncate(self, size: int | None = ...) -> int:  # type: ignore[empty-body]  # ty: ignore[empty-body, invalid-parameter-default]
+    def truncate(self, size: int | None = ...) -> int:  # type: ignore[empty-body]  # ty: ignore[invalid-implicit-return-in-function-with-stub-body, invalid-parameter-default]
         pass
 
-    def writable(self) -> bool:  # type: ignore[empty-body]  # ty: ignore[empty-body]
+    def writable(self) -> bool:  # type: ignore[empty-body]  # ty: ignore[invalid-implicit-return-in-function-with-stub-body]
         pass
 
     def writelines(self, lines: Iterable[AnyStr]) -> None:
         pass
 
-    def __next__(self) -> AnyStr:  # type: ignore[empty-body, type-var]  # ty: ignore[empty-body]
+    def __next__(self) -> AnyStr:  # type: ignore[empty-body, type-var]  # ty: ignore[invalid-implicit-return-in-function-with-stub-body]
         pass
 
-    def __iter__(self) -> Iterator[AnyStr]:  # type: ignore[empty-body]  # ty: ignore[empty-body]
+    def __iter__(self) -> Iterator[AnyStr]:  # type: ignore[empty-body]  # ty: ignore[invalid-implicit-return-in-function-with-stub-body]
         pass
 
-    def __exit__(  # type: ignore[override]  # ty: ignore[invalid-method-override]
+    def __exit__(  # type: ignore[override]  # ty: ignore[incompatible-method-override]
         self, t: type[BaseException] | None, value: BaseException | None, traceback: TracebackType | None
     ) -> bool | None:
         pass

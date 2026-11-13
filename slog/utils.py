@@ -67,10 +67,10 @@ def consecutive[F: Callable[..., Any]](enumeration: F) -> F:
     r"""Class decorator for enumerations ensuring unique and consecutive member values that start from zero."""
     duplicates = []
     non_consecutive = []
-    last_value = min(enumeration.__members__.values()) - 1  # type: ignore[attr-defined]  # ty: ignore[unresolved-attribute]
+    last_value = min(enumeration.__members__.values()) - 1  # type: ignore[attr-defined]  # ty: ignore[missing-attribute]
     if last_value != -1:
         raise ValueError(f"Bad starting value (should be zero): {last_value + 1}")
-    for name, member in enumeration.__members__.items():  # type: ignore[attr-defined]  # ty: ignore[unresolved-attribute]
+    for name, member in enumeration.__members__.items():  # type: ignore[attr-defined]  # ty: ignore[missing-attribute]
         if name != member.name:
             duplicates.append((name, member.name))
         if member != last_value + 1:
@@ -78,10 +78,10 @@ def consecutive[F: Callable[..., Any]](enumeration: F) -> F:
         last_value = member
     if duplicates:
         alias_details = ", ".join([f"{alias} -> {name}" for (alias, name) in duplicates])
-        raise ValueError(f"Duplicate values found in {enumeration.__name__}: {alias_details}")  # fmt: skip  # ty: ignore[unresolved-attribute]
+        raise ValueError(f"Duplicate values found in {enumeration.__name__}: {alias_details}")  # fmt: skip  # ty: ignore[missing-attribute]
     if non_consecutive:
         alias_details = ", ".join(f"{name}: {int(member)}" for (name, member) in non_consecutive)
-        raise ValueError(f"Non-consecutive values found in {enumeration.__name__}: {alias_details}")  # fmt: skip  # ty: ignore[unresolved-attribute]
+        raise ValueError(f"Non-consecutive values found in {enumeration.__name__}: {alias_details}")  # fmt: skip  # ty: ignore[missing-attribute]
     return enumeration
 
 
