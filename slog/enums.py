@@ -50,7 +50,7 @@ class _EnumMetaPlus(EnumMeta):
 
     def list_of_values(cls) -> list[int]:
         r"""Return a list of all the values within the enumerator."""
-        return list(cls.__members__.values())  # ty: ignore[invalid-argument-type]
+        return list(cls.__members__.values())  # ty: ignore[invalid-explicit-return]
 
     @property
     def num_values(cls) -> int:
